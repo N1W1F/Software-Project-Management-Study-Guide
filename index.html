@@ -7,441 +7,404 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #1a1a1e;
-  --paper: #f5f2ec;
-  --cream: #ede9e0;
-  --rule: #d8d2c5;
-  --muted: #7a7669;
-  --ch8: #2d4a3e;
-  --ch8-light: #e8f0ec;
-  --ch8-mid: #6a9c83;
-  --ch7: #3a2d52;
-  --ch7-light: #ede9f5;
-  --ch7-mid: #8b72c0;
-  --accent: #c84b2f;
-  --accent-soft: #f5e8e4;
-  --gold: #b8962e;
-  --gold-soft: #f5f0e0;
+  --bg: #0e0f13;
+  --surface: #14161c;
+  --card: #1a1d26;
+  --card2: #1e2230;
+  --border: #262b3a;
+  --border2: #2e3448;
+  --text: #dde0ea;
+  --muted: #6b7290;
+  --ch8: #4db88a;
+  --ch8-dim: #1a3328;
+  --ch8-mid: #2d7a5c;
+  --ch7: #9b7fe8;
+  --ch7-dim: #251d40;
+  --ch7-mid: #6a4fc0;
+  --accent: #e06b4a;
+  --accent-dim: #301810;
+  --gold: #d4a94a;
+  --gold-dim: #2a1f08;
+  --red: #e05555;
+  --green: #4db88a;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.7;
-  overflow-x: hidden;
 }
 
 /* ── HERO ── */
 .hero {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 5rem 3rem 4rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 4.5rem 3rem 3.5rem;
   position: relative;
   overflow: hidden;
 }
 .hero::before {
   content: '';
   position: absolute;
-  top: -60px; right: -60px;
-  width: 340px; height: 340px;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
   border-radius: 50%;
-  border: 1px solid rgba(245,242,236,0.07);
+  background: radial-gradient(circle, rgba(77,184,138,0.07) 0%, transparent 70%);
+  pointer-events: none;
 }
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -30px; left: 40%;
-  width: 200px; height: 200px;
+  bottom: -40px; left: 30%;
+  width: 300px; height: 300px;
   border-radius: 50%;
-  border: 1px solid rgba(245,242,236,0.05);
+  background: radial-gradient(circle, rgba(155,127,232,0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 .hero-tag {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; color: var(--ch8-mid);
+  font-size: 11px; color: var(--ch8);
   letter-spacing: 0.18em; text-transform: uppercase;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 .hero h1 {
   font-family: 'Fraunces', serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 300; line-height: 1.15;
-  margin-bottom: 1rem;
-  max-width: 700px;
+  color: #eceef5;
+  margin-bottom: 0.8rem; max-width: 650px;
 }
-.hero h1 em { font-style: italic; color: var(--ch8-mid); }
-.hero-sub {
-  color: rgba(245,242,236,0.55);
-  font-size: 14px; max-width: 500px;
-  margin-bottom: 2.5rem;
-}
+.hero h1 em { font-style: italic; color: var(--ch8); }
+.hero-sub { color: var(--muted); font-size: 13px; max-width: 480px; margin-bottom: 2rem; }
 .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
 .hero-pill {
-  font-size: 12px; font-weight: 500;
-  padding: 6px 16px; border-radius: 2px;
-  border: 1px solid;
+  font-size: 11px; font-weight: 500;
+  padding: 5px 14px; border-radius: 2px;
+  border: 1px solid; letter-spacing: 0.03em;
 }
-.pill-8 { border-color: var(--ch8-mid); color: var(--ch8-mid); }
-.pill-7 { border-color: var(--ch7-mid); color: var(--ch7-mid); }
+.pill-8 { border-color: rgba(77,184,138,0.4); color: var(--ch8); background: var(--ch8-dim); }
+.pill-7 { border-color: rgba(155,127,232,0.4); color: var(--ch7); background: var(--ch7-dim); }
 
 /* ── NAV ── */
 .sticky-nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(245,242,236,0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--rule);
-  padding: 0 3rem;
-  display: flex; align-items: center; gap: 0;
+  background: rgba(14,15,19,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2.5rem;
+  display: flex; align-items: center;
   overflow-x: auto;
 }
 .nav-item {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; font-weight: 600;
+  font-size: 10.5px; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--muted); text-decoration: none;
-  padding: 14px 18px;
+  padding: 13px 16px;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
   transition: color 0.2s, border-color 0.2s;
 }
-.nav-item:hover { color: var(--ink); }
-.nav-item.ch8 { border-color: transparent; }
-.nav-item.ch8:hover { border-color: var(--ch8); color: var(--ch8); }
-.nav-item.ch7:hover { border-color: var(--ch7); color: var(--ch7); }
-.nav-item.sheet:hover { border-color: var(--accent); color: var(--accent); }
+.nav-item:hover.n8 { border-color: var(--ch8); color: var(--ch8); }
+.nav-item:hover.n7 { border-color: var(--ch7); color: var(--ch7); }
+.nav-item:hover.ns { border-color: var(--accent); color: var(--accent); }
 
-/* ── MAIN LAYOUT ── */
-.main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+/* ── LAYOUT ── */
+.main { max-width: 880px; margin: 0 auto; padding: 2.5rem 2rem 6rem; }
 
 /* ── CHAPTER HEADER ── */
 .ch-header {
-  display: flex; align-items: baseline; gap: 16px;
-  margin: 4rem 0 2rem;
-  padding-bottom: 14px;
-  border-bottom: 2px solid var(--ink);
+  display: flex; align-items: baseline; gap: 14px;
+  margin: 3.5rem 0 1.5rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border2);
 }
 .ch-num {
   font-family: 'Fraunces', serif;
-  font-size: 3rem; font-weight: 300; line-height: 1;
+  font-size: 2.8rem; font-weight: 300; line-height: 1;
+  opacity: 0.9;
 }
-.ch-num.c8 { color: var(--ch8); }
-.ch-num.c7 { color: var(--ch7); }
-.ch-label { flex: 1; }
 .ch-label h2 {
   font-family: 'Fraunces', serif;
-  font-size: 1.4rem; font-weight: 300;
+  font-size: 1.3rem; font-weight: 300; color: #eceef5;
 }
-.ch-label p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.ch-label p { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
 .ch-marks {
+  margin-left: auto;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; color: var(--muted);
-  background: var(--cream);
-  padding: 4px 10px; border-radius: 2px;
+  font-size: 10px; color: var(--muted);
+  background: var(--card); border: 1px solid var(--border);
+  padding: 3px 9px; border-radius: 2px;
 }
 
-/* ── QUESTION BLOCK ── */
-.q-block {
-  margin-bottom: 14px;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
+/* ── QUESTION CARD ── */
+.q-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 10px;
   overflow: hidden;
-  background: #fff;
 }
 .q-trigger {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 18px 20px; cursor: pointer;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 15px 18px; cursor: pointer;
   transition: background 0.15s;
 }
-.q-trigger:hover { background: var(--cream); }
+.q-trigger:hover { background: var(--card2); }
 .q-badge {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px; font-weight: 600;
-  padding: 3px 9px; border-radius: 2px;
-  white-space: nowrap; margin-top: 2px; flex-shrink: 0;
+  padding: 3px 8px; border-radius: 2px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 2px;
 }
-.badge-8 { background: var(--ch8-light); color: var(--ch8); }
-.badge-7 { background: var(--ch7-light); color: var(--ch7); }
-.q-text { flex: 1; font-size: 14px; font-weight: 500; line-height: 1.5; }
-.q-meta { font-size: 11px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+.b8 { background: var(--ch8-dim); color: var(--ch8); }
+.b7 { background: var(--ch7-dim); color: var(--ch7); }
+.q-text { flex: 1; }
+.q-title { font-size: 13.5px; font-weight: 500; color: #dde0ea; line-height: 1.45; }
+.q-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
 .q-marks {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; color: var(--muted);
-  flex-shrink: 0; margin-top: 3px;
+  font-size: 10px; color: var(--muted); flex-shrink: 0; margin-top: 3px;
 }
-.q-arrow {
-  font-size: 12px; color: var(--muted);
-  transition: transform 0.25s; flex-shrink: 0;
-  margin-top: 4px;
-}
+.q-arrow { font-size: 11px; color: var(--muted); transition: transform 0.22s; flex-shrink: 0; margin-top: 4px; }
 .q-arrow.open { transform: rotate(180deg); }
 
 .q-body {
   display: none;
-  border-top: 1px solid var(--rule);
-  padding: 22px 24px;
-  background: var(--paper);
+  border-top: 1px solid var(--border);
+  padding: 20px 20px 22px;
+  background: var(--bg);
 }
 .q-body.open { display: block; }
 
-/* ── ANSWER CONTENT STYLES ── */
-.ans-lead {
-  font-size: 14px; line-height: 1.75;
-  margin-bottom: 14px; color: var(--ink);
-}
-.ans-lead strong { font-weight: 500; }
+/* ── CONTENT ── */
+.ans-lead { font-size: 13.5px; color: var(--text); line-height: 1.75; margin-bottom: 12px; }
 
-/* Data table */
-.data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
-.data-table th {
-  text-align: left; padding: 8px 12px;
+/* Table */
+.dtable { width: 100%; border-collapse: collapse; font-size: 13px; border-radius: 4px; overflow: hidden; margin: 10px 0; }
+.dtable th {
+  text-align: left; padding: 7px 11px;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--muted);
-  background: var(--cream);
-  border-bottom: 1px solid var(--rule);
+  font-size: 9.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--muted); background: var(--card2);
+  border-bottom: 1px solid var(--border2);
 }
-.data-table td {
-  padding: 9px 12px; border-bottom: 1px solid var(--rule);
-  vertical-align: top; line-height: 1.55;
+.dtable td {
+  padding: 9px 11px; border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.55; color: var(--text);
 }
-.data-table tr:last-child td { border-bottom: none; }
-.data-table tr:hover td { background: rgba(0,0,0,0.015); }
-.td-key { font-weight: 500; color: var(--ink); white-space: nowrap; }
-.td-num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px; font-weight: 600;
-  white-space: nowrap;
-}
+.dtable tr:last-child td { border-bottom: none; }
+.dtable tr:hover td { background: rgba(255,255,255,0.018); }
+.td-k { font-weight: 500; color: #eceef5; white-space: nowrap; }
+.td-mono { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ch8); font-weight: 600; }
 
 /* CMMI level badges */
-.lvl { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 2px; }
-.lvl-1 { background: #f5e8e4; color: #8b2e1a; }
-.lvl-2 { background: #fdf3e0; color: #7a5500; }
-.lvl-3 { background: #e6f0fa; color: #1a4a80; }
-.lvl-4 { background: #e8f5ee; color: #1a5c30; }
-.lvl-5 { background: var(--ch7-light); color: var(--ch7); }
+.lvl { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; padding:2px 8px; border-radius:2px; }
+.l1 { background:#2a1010; color:#e07070; }
+.l2 { background:#2a1f08; color:var(--gold); }
+.l3 { background:#0d2030; color:#6ab0e0; }
+.l4 { background:var(--ch8-dim); color:var(--ch8); }
+.l5 { background:var(--ch7-dim); color:var(--ch7); }
 
-/* Formula box */
+/* Formula */
 .formula {
-  background: var(--ink); color: var(--paper);
+  background: var(--card2); border: 1px solid var(--border2);
+  border-left: 3px solid var(--ch8);
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px; padding: 14px 18px;
-  border-radius: 4px; margin: 12px 0;
-  letter-spacing: 0.03em;
+  font-size: 13px; padding: 12px 16px;
+  border-radius: 0 4px 4px 0; margin: 10px 0;
+  color: #eceef5; letter-spacing: 0.02em;
 }
-.formula span { color: var(--ch8-mid); }
+.formula span { color: var(--ch8); }
 
 /* Calc steps */
-.calc-steps { display: flex; flex-direction: column; gap: 10px; margin: 12px 0; }
+.calc-steps { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
 .calc-step {
-  background: #fff; border: 1px solid var(--rule);
-  border-radius: 4px; padding: 12px 16px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 4px; padding: 13px 16px;
   display: flex; gap: 12px; align-items: flex-start;
 }
-.calc-num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; font-weight: 600;
-  background: var(--ink); color: var(--paper);
-  width: 22px; height: 22px; border-radius: 50%;
+.calc-n {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600;
+  background: var(--ch8-dim); color: var(--ch8); border: 1px solid rgba(77,184,138,0.3);
+  width: 24px; height: 24px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; margin-top: 1px;
 }
-.calc-content { flex: 1; }
-.calc-title { font-weight: 500; font-size: 13px; margin-bottom: 4px; }
-.calc-math {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px; color: var(--muted); line-height: 1.7;
-}
-.calc-result {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px; font-weight: 600; color: var(--ch8);
-}
+.calc-body { flex: 1; }
+.calc-title { font-weight: 500; font-size: 13px; color: #eceef5; margin-bottom: 5px; }
+.calc-math { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); line-height: 1.8; }
+.calc-res { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: var(--ch8); margin-top: 4px; }
 
-/* Decision box */
-.decision-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
-.decision-card {
-  border: 1px solid var(--rule); border-radius: 4px;
-  padding: 14px 16px; background: #fff;
+/* Decision */
+.dec-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+.dec-card {
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 14px 16px; background: var(--card);
 }
-.decision-card.winner { border-color: var(--ch8); border-width: 2px; }
-.dc-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
-.dc-val { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 300; }
-.dc-win { color: var(--ch8); }
-.dc-save { font-size: 12px; color: var(--ch8); margin-top: 4px; font-weight: 500; }
+.dec-card.win { border-color: var(--ch8); border-width: 1.5px; background: var(--ch8-dim); }
+.dc-lbl { font-size: 11px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+.dc-val { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: #eceef5; }
+.dc-val.g { color: var(--ch8); }
+.dc-save { font-size: 11.5px; color: var(--ch8); margin-top: 4px; font-weight: 500; }
 
-/* 5 Steps */
-.steps-list { display: flex; flex-direction: column; gap: 0; margin: 10px 0; }
+/* Steps list */
+.steps-list { display: flex; flex-direction: column; }
 .step-item {
   display: flex; gap: 0;
-  border: 1px solid var(--rule);
-  border-bottom: none; background: #fff;
+  border: 1px solid var(--border); border-bottom: none;
+  background: var(--card);
 }
 .step-item:first-child { border-radius: 4px 4px 0 0; }
-.step-item:last-child { border-radius: 0 0 4px 4px; border-bottom: 1px solid var(--rule); }
+.step-item:last-child { border-radius: 0 0 4px 4px; border-bottom: 1px solid var(--border); }
 .step-side {
-  width: 48px; flex-shrink: 0;
+  width: 46px; flex-shrink: 0;
   display: flex; align-items: flex-start; justify-content: center;
-  padding-top: 14px;
-  border-right: 1px solid var(--rule);
+  padding-top: 14px; border-right: 1px solid var(--border);
 }
 .step-circle {
-  width: 26px; height: 26px; border-radius: 50%;
+  width: 24px; height: 24px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600;
+  background: var(--ch7-dim); color: var(--ch7); border: 1px solid rgba(155,127,232,0.3);
 }
-.sc-7 { background: var(--ch7-light); color: var(--ch7); }
-.step-main { flex: 1; padding: 13px 16px; }
-.step-name { font-weight: 500; font-size: 13px; margin-bottom: 3px; }
-.step-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+.step-main { flex: 1; padding: 13px 15px; }
+.step-name { font-weight: 500; font-size: 13px; color: #eceef5; margin-bottom: 3px; }
+.step-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
 .step-eg { font-size: 12px; color: var(--ch7); margin-top: 5px; font-style: italic; }
 
-/* 4Ts grid */
-.ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+/* 4Ts */
+.ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
 .t-card {
-  border: 1px solid var(--rule); border-radius: 4px;
-  padding: 14px 16px; background: #fff;
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 13px 15px; background: var(--card);
 }
-.t-name { font-weight: 500; font-size: 13px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
-.t-icon {
-  width: 22px; height: 22px; border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; flex-shrink: 0;
-}
-.t-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
-.t-eg { font-size: 11px; color: var(--ch7); margin-top: 6px; font-style: italic; }
+.t-name { font-weight: 500; font-size: 13px; color: #eceef5; margin-bottom: 5px; }
+.t-icon { display: inline-block; margin-right: 6px; }
+.t-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+.t-eg { font-size: 11.5px; color: var(--ch7); margin-top: 5px; font-style: italic; }
 
-/* Risk types */
-.risk-grid { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+/* Risk rows */
+.risk-grid { display: flex; flex-direction: column; gap: 7px; margin: 10px 0; }
 .risk-row {
   display: flex; gap: 12px; align-items: flex-start;
-  padding: 12px 14px; background: #fff;
-  border: 1px solid var(--rule); border-radius: 4px;
+  padding: 11px 13px; background: var(--card);
+  border: 1px solid var(--border); border-radius: 4px;
 }
 .risk-tag {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; font-weight: 600;
-  padding: 3px 9px; border-radius: 2px;
-  white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 2px;
 }
-.risk-body { flex: 1; }
-.risk-def { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.risk-def { font-size: 13px; font-weight: 500; color: #eceef5; margin-bottom: 2px; }
 .risk-ex { font-size: 12px; color: var(--muted); font-style: italic; }
 
-/* EMV table wrapper */
-.emv-wrap { margin: 10px 0; }
+/* EMV total bar */
 .emv-total {
-  background: var(--ink); color: var(--paper);
-  padding: 10px 12px; font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px; display: flex; justify-content: space-between;
+  background: var(--card2); border: 1px solid var(--border2);
+  border-top: none; padding: 9px 11px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;
+  display: flex; justify-content: space-between; align-items: center;
   border-radius: 0 0 4px 4px;
 }
 
-/* Info callout */
+/* Callout */
 .callout {
   border-left: 3px solid; padding: 10px 14px;
   border-radius: 0 4px 4px 0; margin: 10px 0;
   font-size: 13px; line-height: 1.6;
 }
-.callout-green { border-color: var(--ch8); background: var(--ch8-light); color: var(--ch8); }
-.callout-purple { border-color: var(--ch7-mid); background: var(--ch7-light); color: var(--ch7); }
-.callout-red { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
-.callout strong { color: inherit; }
+.c-green { border-color: var(--ch8); background: var(--ch8-dim); color: #7dd4ad; }
+.c-purple { border-color: var(--ch7); background: var(--ch7-dim); color: #b8a0f0; }
+.c-gold { border-color: var(--gold); background: var(--gold-dim); color: var(--gold); }
+.callout strong { color: #eceef5; }
 
 /* MCQ answer */
 .mcq-ans {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--ink); color: var(--paper);
+  background: var(--ch8-dim); border: 1px solid rgba(77,184,138,0.3);
   padding: 10px 18px; border-radius: 4px;
   font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 300;
-  margin-bottom: 10px;
+  color: var(--ch8); margin-bottom: 12px;
 }
-.mcq-ans span { color: var(--ch8-mid); }
 
-/* Cheat sheet */
-.cheat-section { margin-bottom: 28px; }
+/* ── CHEAT SHEET ── */
+.cheat-section { margin-bottom: 24px; }
 .cheat-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted);
-  margin-bottom: 8px; padding-bottom: 6px;
-  border-bottom: 1px solid var(--rule);
+  margin-bottom: 8px; padding-bottom: 7px;
+  border-bottom: 1px solid var(--border);
 }
-.cheat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.cheat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
 .cheat-row {
-  display: flex; gap: 0;
-  border: 1px solid var(--rule); border-radius: 3px;
-  overflow: hidden; background: #fff;
+  display: flex; border: 1px solid var(--border);
+  border-radius: 3px; overflow: hidden; background: var(--card);
   font-size: 12px;
 }
-.cheat-q { padding: 7px 10px; flex: 1; color: var(--muted); }
+.cheat-q { padding: 7px 10px; flex: 1; color: var(--muted); line-height: 1.4; }
 .cheat-a {
   padding: 7px 10px;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; font-weight: 600;
-  border-left: 1px solid var(--rule);
-  min-width: 110px;
+  font-size: 10.5px; font-weight: 600;
+  border-left: 1px solid var(--border);
+  min-width: 120px; display: flex; align-items: center;
 }
-.ca-8 { background: var(--ch8-light); color: var(--ch8); }
-.ca-7 { background: var(--ch7-light); color: var(--ch7); }
-.ca-r { background: var(--accent-soft); color: var(--accent); }
+.ca8 { background: var(--ch8-dim); color: var(--ch8); }
+.ca7 { background: var(--ch7-dim); color: var(--ch7); }
+.cax { background: var(--accent-dim); color: var(--accent); }
 
-/* ── animations ── */
+/* Animations */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
 }
-.q-block { animation: fadeUp 0.4s ease both; }
-.q-block:nth-child(1) { animation-delay: 0.05s; }
-.q-block:nth-child(2) { animation-delay: 0.10s; }
-.q-block:nth-child(3) { animation-delay: 0.15s; }
-.q-block:nth-child(4) { animation-delay: 0.20s; }
-.q-block:nth-child(5) { animation-delay: 0.25s; }
-.q-block:nth-child(6) { animation-delay: 0.30s; }
-.q-block:nth-child(7) { animation-delay: 0.35s; }
+.q-card { animation: fadeUp 0.35s ease both; }
+.q-card:nth-child(1){animation-delay:.05s}
+.q-card:nth-child(2){animation-delay:.10s}
+.q-card:nth-child(3){animation-delay:.15s}
+.q-card:nth-child(4){animation-delay:.20s}
+.q-card:nth-child(5){animation-delay:.25s}
+.q-card:nth-child(6){animation-delay:.30s}
+.q-card:nth-child(7){animation-delay:.35s}
 
-/* Footer */
 .footer {
-  text-align: center; padding: 3rem;
-  border-top: 1px solid var(--rule);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; color: var(--muted); letter-spacing: 0.08em;
+  text-align:center; padding:2.5rem;
+  border-top:1px solid var(--border);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px; color:var(--muted); letter-spacing:0.06em;
 }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-tag">Final Exam Prep · Spring 2026</div>
   <h1>Software Project<br><em>Management</em><br>Study Guide</h1>
-  <p class="hero-sub">All exam questions with full answers — Chapters 7 & 8 · 30 total marks</p>
+  <p class="hero-sub">All exam questions with answers from slides — Chapters 7 & 8 · 30 total marks</p>
   <div class="hero-pills">
     <span class="hero-pill pill-8">Ch.8 — CMMI & Expected Cost · 9 marks</span>
     <span class="hero-pill pill-7">Ch.7 — Risk Management · 15 marks</span>
   </div>
 </div>
 
-<!-- NAV -->
 <nav class="sticky-nav">
-  <a class="nav-item ch8" href="#mcq">MCQ</a>
-  <a class="nav-item ch8" href="#ch8">Ch.8 — CMMI</a>
-  <a class="nav-item ch7" href="#ch7">Ch.7 — Risk</a>
-  <a class="nav-item sheet" href="#cheat">Cheat Sheet</a>
+  <a class="nav-item n8" href="#mcq">MCQ</a>
+  <a class="nav-item n8" href="#ch8">Ch.8 — CMMI</a>
+  <a class="nav-item n7" href="#ch7">Ch.7 — Risk</a>
+  <a class="nav-item ns" href="#cheat">Cheat Sheet</a>
 </nav>
 
 <div class="main">
 
-  <!-- ══════════════════════
-       SECTION 1 — MCQ
-  ══════════════════════ -->
-  <div id="mcq" class="ch-header">
-    <div class="ch-num" style="color:var(--muted); font-size:1.5rem;">§1</div>
+  <!-- S1 MCQ -->
+  <div id="mcq" class="ch-header" style="margin-top:0;">
+    <div class="ch-num" style="color:var(--muted);font-size:1.4rem;">§1</div>
     <div class="ch-label">
       <h2>Multiple Choice & True/False</h2>
       <p>Section 1 · 6 Marks</p>
@@ -449,28 +412,26 @@ body {
     <span class="ch-marks">6 marks</span>
   </div>
 
-  <div class="q-block">
-    <div class="q-trigger" onclick="toggle(this)">
-      <span class="q-badge badge-8">Q1 · MCQ</span>
+  <div class="q-card">
+    <div class="q-trigger" onclick="tog(this)">
+      <span class="q-badge b8">Q1 · MCQ</span>
       <div class="q-text">
-        Which CMMI maturity level primarily focuses on project planning, requirements management, and configuration management?
+        <div class="q-title">Which CMMI maturity level primarily focuses on project planning, requirements management, and configuration management?</div>
         <div class="q-meta">Core concept — likely on exam</div>
       </div>
       <span class="q-marks">1 mark</span>
       <span class="q-arrow">▼</span>
     </div>
     <div class="q-body">
-      <div class="mcq-ans">Answer: <span>Level 2 — Managed</span></div>
-      <div class="ans-lead">Level 2 is the only level that specifically introduces: <strong>Requirements Management (REQM)</strong>, <strong>Project Planning (PP)</strong>, <strong>Project Monitoring & Control (PMC)</strong>, and <strong>Configuration Management (CM)</strong>. Each project is planned and tracked individually at this level.</div>
-      <div class="callout callout-green">Tip: Level 2 = project-level control. Level 3 = org-wide standards. They are commonly confused on exams.</div>
+      <div class="mcq-ans">Answer: Level 2 — Managed</div>
+      <div class="ans-lead">From the slides: Level 2 introduces <strong>Requirements Management (REQM)</strong> — know what the customer asked for, <strong>Project Planning (PP)</strong> — estimate tasks, people, cost, and schedule, <strong>Project Monitoring & Control (PMC)</strong> — compare actual progress with the plan, and <strong>Configuration Management (CM)</strong> — control versions and changes.</div>
+      <div class="callout c-green">Slide note: "Result: each project can be managed, even if the whole organization does not yet use one standard process."</div>
     </div>
   </div>
 
-  <!-- ══════════════════════
-       SECTION 2 — CH.8
-  ══════════════════════ -->
+  <!-- S2 CH8 -->
   <div id="ch8" class="ch-header">
-    <div class="ch-num c8">8</div>
+    <div class="ch-num" style="color:var(--ch8);">8</div>
     <div class="ch-label">
       <h2>Expected Cost & CMMI</h2>
       <p>Chapter 8 · Section 2</p>
@@ -479,139 +440,120 @@ body {
   </div>
 
   <!-- Q2 -->
-  <div class="q-block">
-    <div class="q-trigger" onclick="toggle(this)">
-      <span class="q-badge badge-8">Q2</span>
+  <div class="q-card">
+    <div class="q-trigger" onclick="tog(this)">
+      <span class="q-badge b8">Q2</span>
       <div class="q-text">
-        Create a comprehensive table of the 5 CMMI Maturity Levels — definition, key steps, and advantages.
-        <div class="q-meta">Long answer — memorize all 5 rows</div>
+        <div class="q-title">Create a comprehensive table of the 5 CMMI Maturity Levels — definition, key steps, and advantages.</div>
+        <div class="q-meta">Long answer · memorize all 5 levels</div>
       </div>
       <span class="q-marks">4 marks</span>
       <span class="q-arrow">▼</span>
     </div>
     <div class="q-body">
-      <table class="data-table">
+      <table class="dtable">
         <thead>
-          <tr>
-            <th>Level</th>
-            <th>Name</th>
-            <th>Definition</th>
-            <th>Key Steps / Actions</th>
-            <th>Advantage</th>
-          </tr>
+          <tr><th>Level</th><th>Name</th><th>Definition (from slides)</th><th>Key Steps / Actions</th><th>Advantage</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="lvl lvl-1">1</span></td>
-            <td class="td-key">Initial</td>
-            <td>Chaotic, hero-dependent. Success relies on talented individuals, not a repeatable process.</td>
-            <td>No formal planning or docs. Ad-hoc testing.</td>
-            <td>Starting point — awareness of the problem is the first step.</td>
+            <td><span class="lvl l1">1</span></td>
+            <td class="td-k">Initial</td>
+            <td>Work is ad hoc and chaotic. Success depends on individual effort rather than a reliable process.</td>
+            <td>No written requirements, no plan. Testing happens late or only when bugs appear. Schedules depend on "who is available today."</td>
+            <td>Starting point — awareness that a process is needed.</td>
           </tr>
           <tr>
-            <td><span class="lvl lvl-2">2</span></td>
-            <td class="td-key">Managed</td>
-            <td>Each project is planned and tracked individually with requirements and change control.</td>
-            <td>Requirements Mgmt, Project Planning, Monitoring & Control, Config Management.</td>
-            <td>Projects become controllable — track progress and changes per project.</td>
+            <td><span class="lvl l2">2</span></td>
+            <td class="td-k">Managed</td>
+            <td>The team plans, tracks, manages requirements, and controls changes at the project level.</td>
+            <td>REQM: know what the customer asked for. PP: estimate tasks/cost/schedule. PMC: compare actual vs plan. CM: control versions and changes.</td>
+            <td>Each project can be managed and tracked, even without an org-wide standard process.</td>
           </tr>
           <tr>
-            <td><span class="lvl lvl-3">3</span></td>
-            <td class="td-key">Defined</td>
-            <td>One standard process documented and applied across the entire organization.</td>
-            <td>Standard SDLC, Risk Management, Verification, Validation, unified team training.</td>
-            <td>Consistency across all projects — easier to scale, onboard, and grow.</td>
+            <td><span class="lvl l3">3</span></td>
+            <td class="td-k">Defined</td>
+            <td>Processes are documented, trained, and applied across the whole organization — not just per project.</td>
+            <td>Requirements Development, Technical Solution, Verification, Validation, Risk Management, Organizational Training — same for every team.</td>
+            <td>Consistency across all projects — easier to scale and onboard new teams.</td>
           </tr>
           <tr>
-            <td><span class="lvl lvl-4">4</span></td>
-            <td class="td-key">Quantitatively Managed</td>
-            <td>Performance measured statistically — results are predictable using real data.</td>
-            <td>Track defects/module, effort/feature, test pass rate, schedule variance.</td>
-            <td>Data-driven decisions — cost and quality can be predicted accurately.</td>
+            <td><span class="lvl l4">4</span></td>
+            <td class="td-k">Quantitatively Managed</td>
+            <td>The organization controls performance using measures and statistical thinking — results are predictable.</td>
+            <td>Track: defects per module, effort per feature, test pass rate, schedule variance and cycle time.</td>
+            <td>Data-driven decisions — cost and quality can be predicted accurately before release.</td>
           </tr>
           <tr>
-            <td><span class="lvl lvl-5">5</span></td>
-            <td class="td-key">Optimizing</td>
-            <td>Continuous improvement institutionalized via root cause analysis and innovation.</td>
-            <td>Root Cause Analysis → fix process → deploy improvement → measure effect → repeat.</td>
-            <td>Highest quality & efficiency — organization learns and improves automatically each cycle.</td>
+            <td><span class="lvl l5">5</span></td>
+            <td class="td-k">Optimizing</td>
+            <td>The organization uses evidence to prevent problems and innovate, not just react.</td>
+            <td>Find root cause → improve process (checklist/tool/training) → deploy innovation across teams → measure if quality/cost/speed improved → repeat.</td>
+            <td>Highest quality and efficiency — improvement becomes part of daily work.</td>
           </tr>
         </tbody>
       </table>
-      <div class="callout callout-green" style="margin-top:12px;">
-        <strong>Exam tip:</strong> Best possible result = Level 5. Best practical first goal for a low-maturity org = Level 3.
+      <div class="callout c-gold" style="margin-top:10px;">
+        <strong>From slides (exam wording):</strong> "Best maturity result: Level 5. Best practical first goal: Level 3 — Defined." If asked where a low-maturity org should start → Level 2, then Level 3.
       </div>
     </div>
   </div>
 
   <!-- Q3 -->
-  <div class="q-block">
-    <div class="q-trigger" onclick="toggle(this)">
-      <span class="q-badge badge-8">Q3</span>
+  <div class="q-card">
+    <div class="q-trigger" onclick="tog(this)">
+      <span class="q-badge b8">Q3</span>
       <div class="q-text">
-        Using a decision tree (Build vs Reuse System X), calculate the Expected Cost and state your final decision.
+        <div class="q-title">Using a decision tree (Build vs Reuse System X), explain how to calculate the Expected Cost and state your final decision.</div>
         <div class="q-meta">3 mandatory steps · show all calculations</div>
       </div>
       <span class="q-marks">5 marks</span>
       <span class="q-arrow">▼</span>
     </div>
     <div class="q-body">
-      <div class="formula">EC = <span>Σ (Probability × Cost)</span></div>
-
+      <div class="formula">EC = <span>Σ (Probability × Cost)</span> &nbsp;— The lowest expected cost is the preferred economic decision.</div>
       <div class="calc-steps">
         <div class="calc-step">
-          <div class="calc-num">1</div>
-          <div class="calc-content">
+          <div class="calc-n">1</div>
+          <div class="calc-body">
             <div class="calc-title">Expected Cost to Build</div>
-            <div class="calc-math">
-              (0.30 × $380,000) + (0.70 × $450,000)<br>
-              = $114,000 + $315,000
-            </div>
-            <div class="calc-result">= $429,000</div>
+            <div class="calc-math">Build has two outcomes: $380k and $450k<br>(0.30 × 380,000) + (0.70 × 450,000)<br>= 114,000 + 315,000</div>
+            <div class="calc-res">Expected Cost to Build = $429,000</div>
           </div>
         </div>
-
         <div class="calc-step">
-          <div class="calc-num">2</div>
-          <div class="calc-content">
+          <div class="calc-n">2</div>
+          <div class="calc-body">
             <div class="calc-title">Expected Cost to Reuse</div>
-            <div class="calc-math">
-              Minor branch: 0.40 × $275,000 = $110,000<br>
-              Major inner:  (0.20 × $310,000) + (0.80 × $490,000) = $62,000 + $392,000 = $454,000<br>
-              Major branch: 0.60 × $454,000 = $272,400<br>
-              Total Reuse = $110,000 + $272,400
-            </div>
-            <div class="calc-result">= $382,400</div>
+            <div class="calc-math">A) Minor changes branch: 0.40 × $275,000 = $110,000<br>B) Major changes inner: (0.20 × $310,000) + (0.80 × $490,000) = $62,000 + $392,000 = $454,000<br>B) Major branch: 0.60 × $454,000 = $272,400<br>Total = $110,000 + $272,400</div>
+            <div class="calc-res">Expected Cost to Reuse = $382,400</div>
           </div>
         </div>
-
         <div class="calc-step">
-          <div class="calc-num">3</div>
-          <div class="calc-content">
-            <div class="calc-title">Final Decision</div>
-            <div class="decision-row">
-              <div class="decision-card">
-                <div class="dc-label">Build</div>
+          <div class="calc-n">3</div>
+          <div class="calc-body">
+            <div class="calc-title">Compare and Choose</div>
+            <div class="dec-row">
+              <div class="dec-card">
+                <div class="dc-lbl">Build Path</div>
                 <div class="dc-val">$429,000</div>
               </div>
-              <div class="decision-card winner">
-                <div class="dc-label">Reuse ✓ Winner</div>
-                <div class="dc-val dc-win">$382,400</div>
+              <div class="dec-card win">
+                <div class="dc-lbl">Reuse Path ✓</div>
+                <div class="dc-val g">$382,400</div>
                 <div class="dc-save">Saves $46,600</div>
               </div>
             </div>
-            <div class="calc-math" style="margin-top:6px;">Choose <strong>Reuse</strong> — lower expected cost by $46,600. This is a rational economic decision based on expected value, not a guarantee of actual cost.</div>
+            <div class="calc-math" style="margin-top:8px;">Choose Reuse — lower expected cost by $46,600. From slides: "This is an expected value decision: it does not guarantee the actual cost, but it supports a rational planning choice."</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════
-       SECTION 3 — CH.7
-  ══════════════════════ -->
+  <!-- S3 CH7 -->
   <div id="ch7" class="ch-header">
-    <div class="ch-num c7">7</div>
+    <div class="ch-num" style="color:var(--ch7);">7</div>
     <div class="ch-label">
       <h2>Risk Management</h2>
       <p>Chapter 7 · Section 3</p>
@@ -620,12 +562,12 @@ body {
   </div>
 
   <!-- Q4 -->
-  <div class="q-block">
-    <div class="q-trigger" onclick="toggle(this)">
-      <span class="q-badge badge-7">Q4</span>
+  <div class="q-card">
+    <div class="q-trigger" onclick="tog(this)">
+      <span class="q-badge b7">Q4</span>
       <div class="q-text">
-        Detail the 5 main steps in risk management — explanation + QuickBite example for each.
-        <div class="q-meta">5 steps · one example each · QuickBite case study</div>
+        <div class="q-title">Detail the 5 main steps in risk management activities. Explanation + QuickBite example for each.</div>
+        <div class="q-meta">From slides: Identifying → Determining → Evaluation → Planning → Documenting/Communicating</div>
       </div>
       <span class="q-marks">5 marks</span>
       <span class="q-arrow">▼</span>
@@ -633,43 +575,43 @@ body {
     <div class="q-body">
       <div class="steps-list">
         <div class="step-item">
-          <div class="step-side"><div class="step-circle sc-7">1</div></div>
+          <div class="step-side"><div class="step-circle">1</div></div>
           <div class="step-main">
-            <div class="step-name">Risk Identification</div>
-            <div class="step-desc">Find all possible threats before they occur. Use brainstorming, checklists, and historical data.</div>
-            <div class="step-eg">QB: Identified 3 key risks — app crash at peak hours, marketing budget running out before launch, and a competitor launching a 50% discount on day 1.</div>
+            <div class="step-name">Identifying Risk</div>
+            <div class="step-desc">Find all possible threats before they happen. "You cannot manage what you have not identified."</div>
+            <div class="step-eg">QB: App crashes during peak dinner hours (7–9 PM), running out of marketing budget before launch, competitor launching a 50% discount on launch day.</div>
           </div>
         </div>
         <div class="step-item">
-          <div class="step-side"><div class="step-circle sc-7">2</div></div>
+          <div class="step-side"><div class="step-circle">2</div></div>
           <div class="step-main">
-            <div class="step-name">Risk Analysis & Assessment</div>
-            <div class="step-desc">Measure each risk: <strong>Score = Probability × Severity</strong>. Determines how serious the risk is.</div>
-            <div class="step-eg">QB: App crash at peak = Probability High × Severity High = Score 9/10 (Critical). Late deliveries = Score 5/10 (Moderate).</div>
+            <div class="step-name">Determining Probabilities (Analysis & Assessment)</div>
+            <div class="step-desc">Measure each risk: <strong>Risk Score = Probability × Severity</strong>. Goal: measuring the "size" of the threat to prioritize resources.</div>
+            <div class="step-eg">QB: App crash — Probability: High, Severity: High → Score 9/10 (Critical). Late deliveries — Probability: Medium, Severity: Medium → Score 5/10 (Moderate).</div>
           </div>
         </div>
         <div class="step-item">
-          <div class="step-side"><div class="step-circle sc-7">3</div></div>
+          <div class="step-side"><div class="step-circle">3</div></div>
           <div class="step-main">
-            <div class="step-name">Risk Evaluation & Prioritization</div>
-            <div class="step-desc">Rank risks using a Risk Heat Map. Focus resources on the highest-impact risks first.</div>
-            <div class="step-eg">QB: Red Zone (fix before launch) = app stability & payment security. Yellow Zone = marketing costs. Green Zone = minor office supply shortages (acceptable).</div>
+            <div class="step-name">Evaluation & Prioritization</div>
+            <div class="step-desc">Rank risks using a Risk Heat Map. "Focus your resources where the impact is greatest."</div>
+            <div class="step-eg">QB: Red Zone — app stability and payment security (must fix before launch). Yellow Zone — marketing costs and delivery speed. Green Zone — office supply shortages (accept and ignore).</div>
           </div>
         </div>
         <div class="step-item">
-          <div class="step-side"><div class="step-circle sc-7">4</div></div>
+          <div class="step-side"><div class="step-circle">4</div></div>
           <div class="step-main">
-            <div class="step-name">Risk Response / Treatment</div>
-            <div class="step-desc">Choose a strategy for each risk: Terminate, Treat, Transfer, or Tolerate (the 4 T's).</div>
-            <div class="step-eg">QB: Treat the app crash risk → hire extra servers and run stress tests before launch day.</div>
+            <div class="step-name">Planning Responses (Treatment & Mitigation — The 4 T's)</div>
+            <div class="step-desc">Choose a strategy for each risk: Terminate, Treat, Transfer, or Tolerate.</div>
+            <div class="step-eg">QB: Treat the app crash risk — hire extra servers and run stress tests to prevent crashes.</div>
           </div>
         </div>
         <div class="step-item">
-          <div class="step-side"><div class="step-circle sc-7">5</div></div>
+          <div class="step-side"><div class="step-circle">5</div></div>
           <div class="step-main">
-            <div class="step-name">Monitoring, Documentation & Communication</div>
-            <div class="step-desc">Continuously track risks, update the risk register, and communicate status — the environment changes constantly.</div>
-            <div class="step-eg">QB: One month after launch, discovered a new "driver shortage" risk → immediately raised driver bonuses to maintain supply.</div>
+            <div class="step-name">Documenting & Communicating (Monitoring & Review)</div>
+            <div class="step-desc">"Risk management is a living document, not a one-time task." The market changes daily — continuously check for new and evolving threats.</div>
+            <div class="step-eg">QB: After 1 month, discovered "Driver Shortage" risk. Adjusted immediately — increased driver bonuses to ensure supply and maintain delivery speed.</div>
           </div>
         </div>
       </div>
@@ -677,12 +619,12 @@ body {
   </div>
 
   <!-- Q5 -->
-  <div class="q-block">
-    <div class="q-trigger" onclick="toggle(this)">
-      <span class="q-badge badge-7">Q5</span>
+  <div class="q-card">
+    <div class="q-trigger" onclick="tog(this)">
+      <span class="q-badge b7">Q5</span>
       <div class="q-text">
-        Identify the 4 primary risk response strategies (Terminate, Treat, Transfer, Tolerate) and explain each.
-        <div class="q-meta">The 4 T's — purpose + QuickBite example</div>
+        <div class="q-title">Identify the 4 primary risk response strategies (Terminate, Treat, Transfer, Tolerate). Explain the specific purpose of each.</div>
+        <div class="q-meta">The 4 T's — directly from slide 7</div>
       </div>
       <span class="q-marks">3 marks</span>
       <span class="q-arrow">▼</span>
@@ -690,48 +632,36 @@ body {
     <div class="q-body">
       <div class="ts-grid">
         <div class="t-card">
-          <div class="t-name">
-            <div class="t-icon" style="background:#f5e8e4;">🚫</div>
-            Terminate (Avoid)
-          </div>
-          <div class="t-desc">Eliminate the activity causing the risk entirely. Used when the risk is too high to manage by any other means.</div>
-          <div class="t-eg">QB: Stop delivering to high-crime areas completely to protect driver safety.</div>
+          <div class="t-name"><span class="t-icon">🚫</span>Terminate (Avoidance)</div>
+          <div class="t-desc">Stopping the activity entirely to eliminate the risk. Used when the risk is too high to manage.</div>
+          <div class="t-eg">QB: Deciding not to deliver in high-crime areas to protect driver safety.</div>
         </div>
         <div class="t-card">
-          <div class="t-name">
-            <div class="t-icon" style="background:var(--ch8-light);">🔧</div>
-            Treat (Reduce)
-          </div>
-          <div class="t-desc">Take action to lower the probability of the risk occurring or reduce its impact if it does occur.</div>
-          <div class="t-eg">QB: Add extra servers and run stress tests to prevent app crashes during peak hours.</div>
+          <div class="t-name"><span class="t-icon">🔧</span>Treat (Reduction)</div>
+          <div class="t-desc">Taking action to lower the probability or impact of the risk to an acceptable level.</div>
+          <div class="t-eg">QB: Hiring extra servers and running stress tests to prevent app crashes.</div>
         </div>
         <div class="t-card">
-          <div class="t-name">
-            <div class="t-icon" style="background:var(--gold-soft);">↗</div>
-            Transfer (Share)
-          </div>
-          <div class="t-desc">Shift the financial or operational burden of the risk to a third party — does not eliminate the risk, just moves who bears it.</div>
-          <div class="t-eg">QB: Buy insurance for delivery riders — financial liability for accidents moves to the insurer.</div>
+          <div class="t-name"><span class="t-icon">↗</span>Transfer (Sharing)</div>
+          <div class="t-desc">Shifting the financial or operational burden of the risk to a third party.</div>
+          <div class="t-eg">QB: Purchasing insurance for delivery riders to shift the liability.</div>
         </div>
         <div class="t-card">
-          <div class="t-name">
-            <div class="t-icon" style="background:var(--ch7-light);">✓</div>
-            Tolerate (Accept)
-          </div>
-          <div class="t-desc">Accept the risk and absorb the cost if it occurs. Used for low-impact or low-probability risks where treatment costs more than the risk itself.</div>
-          <div class="t-eg">QB: Accept that 1% of orders may arrive slightly late due to traffic — not worth extra investment to fix.</div>
+          <div class="t-name"><span class="t-icon">✓</span>Tolerate (Acceptance)</div>
+          <div class="t-desc">Acknowledging the risk and bearing the cost if it occurs. Usually for low-impact risks.</div>
+          <div class="t-eg">QB: Accepting that 1% of orders might be slightly late due to traffic.</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Q6 -->
-  <div class="q-block">
-    <div class="q-trigger" onclick="toggle(this)">
-      <span class="q-badge badge-7">Q6</span>
+  <div class="q-card">
+    <div class="q-trigger" onclick="tog(this)">
+      <span class="q-badge b7">Q6</span>
       <div class="q-text">
-        Differentiate between the 5 types of project risks — Operational, Financial, Compliance, Reputational, Cyber.
-        <div class="q-meta">One QuickBite example per type</div>
+        <div class="q-title">Differentiate between the types of project risks — Operational, Financial, Compliance, Reputational, and Cyber. One QuickBite example each.</div>
+        <div class="q-meta">From slides 9 & 14</div>
       </div>
       <span class="q-marks">3 marks</span>
       <span class="q-arrow">▼</span>
@@ -739,38 +669,38 @@ body {
     <div class="q-body">
       <div class="risk-grid">
         <div class="risk-row">
-          <span class="risk-tag" style="background:#fdf3e0;color:#7a5500;">Operational</span>
-          <div class="risk-body">
-            <div class="risk-def">Failure in internal systems, processes, people, or tools.</div>
-            <div class="risk-ex">QB: A GPS glitch sends drivers to wrong addresses, causing massive delays across all orders.</div>
+          <span class="risk-tag" style="background:var(--gold-dim);color:var(--gold);">Operational</span>
+          <div>
+            <div class="risk-def">Failed delivery logistics, GPS errors, or restaurant partner delays.</div>
+            <div class="risk-ex">QB: A GPS glitch sends drivers to wrong locations, causing massive delays.</div>
           </div>
         </div>
         <div class="risk-row">
-          <span class="risk-tag" style="background:#f5e8e4;color:#8b2e1a;">Financial</span>
-          <div class="risk-body">
-            <div class="risk-def">Budget overruns or revenue falling short of projections.</div>
-            <div class="risk-ex">QB: Marketing budget runs out before launch, making it impossible to acquire enough users to break even.</div>
+          <span class="risk-tag" style="background:var(--accent-dim);color:var(--accent);">Financial</span>
+          <div>
+            <div class="risk-def">Budget overruns and lower-than-expected sales.</div>
+            <div class="risk-ex">QB: Running out of marketing budget before the launch date, preventing user acquisition.</div>
           </div>
         </div>
         <div class="risk-row">
-          <span class="risk-tag" style="background:#e6f0fa;color:#1a4a80;">Compliance</span>
-          <div class="risk-body">
-            <div class="risk-def">Legal, regulatory, or industry violations that expose the company to penalties.</div>
-            <div class="risk-ex">QB: A new law requires all gig workers to be classified as full-time employees — restructuring costs are enormous.</div>
+          <span class="risk-tag" style="background:#0d2030;color:#6ab0e0;">Compliance</span>
+          <div>
+            <div class="risk-def">New labor laws regarding gig-economy workers or food safety regulations.</div>
+            <div class="risk-ex">QB: A new law requires all delivery riders to be classified as full-time employees.</div>
           </div>
         </div>
         <div class="risk-row">
-          <span class="risk-tag" style="background:var(--ch7-light);color:var(--ch7);">Reputational</span>
-          <div class="risk-body">
-            <div class="risk-def">Damage to brand image and customer trust, often from public incidents.</div>
-            <div class="risk-ex">QB: A viral video of a driver eating a customer's order spreads widely, destroying QuickBite's brand image.</div>
+          <span class="risk-tag" style="background:var(--ch7-dim);color:var(--ch7);">Reputational</span>
+          <div>
+            <div class="risk-def">Negative publicity from cold food, rude drivers, or social media scandals.</div>
+            <div class="risk-ex">QB: A viral video of a driver eating a customer's fries ruins the brand's trust.</div>
           </div>
         </div>
         <div class="risk-row">
-          <span class="risk-tag" style="background:var(--ch8-light);color:var(--ch8);">Cyber</span>
-          <div class="risk-body">
-            <div class="risk-def">Data breaches, hacking attacks, or critical IT system failures.</div>
-            <div class="risk-ex">QB: Hackers breach the app's database and steal 10,000 customers' credit card records.</div>
+          <span class="risk-tag" style="background:var(--ch8-dim);color:var(--ch8);">Cyber</span>
+          <div>
+            <div class="risk-def">Threats from data breaches, hacking, or IT system failures.</div>
+            <div class="risk-ex">QB: Hackers steal 10,000 customer credit card records from the app's database.</div>
           </div>
         </div>
       </div>
@@ -778,105 +708,112 @@ body {
   </div>
 
   <!-- Q7 -->
-  <div class="q-block">
-    <div class="q-trigger" onclick="toggle(this)">
-      <span class="q-badge badge-7">Q7</span>
+  <div class="q-card">
+    <div class="q-trigger" onclick="tog(this)">
+      <span class="q-badge b7">Q7</span>
       <div class="q-text">
-        Explain how to calculate Expected Monetary Value (EMV) — formula + structured table.
-        <div class="q-meta">Columns: Risk · Probability · Impact · EMV</div>
+        <div class="q-title">Explain how to calculate Expected Monetary Value (EMV). Formula + table with Risk, Probability, Impact, and EMV columns.</div>
+        <div class="q-meta">From slides 10–13 — QuickBite EMV example</div>
       </div>
       <span class="q-marks">4 marks</span>
       <span class="q-arrow">▼</span>
     </div>
     <div class="q-body">
-      <div class="formula">EMV = <span>Probability × Impact</span> &nbsp;|&nbsp; Total EMV = <span>Σ all EMVs</span></div>
-      <div class="ans-lead">Negative impact = threat/loss. Positive impact = opportunity/gain. The total EMV tells you how much risk reserve the project needs.</div>
-      <div class="emv-wrap">
-        <table class="data-table" style="border-radius:4px 4px 0 0; overflow:hidden;">
-          <thead>
-            <tr>
-              <th>Risk</th>
-              <th>Probability</th>
-              <th>Impact ($)</th>
-              <th>EMV ($)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>App crash during peak hours</td>
-              <td class="td-num">30% (0.30)</td>
-              <td class="td-num" style="color:var(--accent);">−200,000</td>
-              <td class="td-num" style="color:var(--accent);">−60,000</td>
-            </tr>
-            <tr>
-              <td>Late deliveries</td>
-              <td class="td-num">40% (0.40)</td>
-              <td class="td-num" style="color:var(--accent);">−50,000</td>
-              <td class="td-num" style="color:var(--accent);">−20,000</td>
-            </tr>
-            <tr>
-              <td>Marketing campaign success</td>
-              <td class="td-num">25% (0.25)</td>
-              <td class="td-num" style="color:var(--ch8);">+120,000</td>
-              <td class="td-num" style="color:var(--ch8);">+30,000</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="emv-total">
-          <span>Total Project EMV</span>
-          <span style="color:#f08060; font-weight:600;">−$50,000</span>
-        </div>
+      <div class="formula">EMV = <span>Probability × Impact</span> &nbsp;|&nbsp; Total Project EMV = <span>Σ all EMVs</span></div>
+      <div class="ans-lead">Negative impact = risk/threat (loss). Positive impact = opportunity (gain). The total tells you the risk reserve needed.</div>
+      <table class="dtable" style="border-radius:4px 4px 0 0;">
+        <thead>
+          <tr><th>Risk</th><th>Probability</th><th>Impact ($)</th><th>EMV ($)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>App crash</td>
+            <td class="td-mono" style="color:var(--muted);">30% (0.30)</td>
+            <td class="td-mono" style="color:var(--accent);">−200,000</td>
+            <td class="td-mono" style="color:var(--accent);">−60,000</td>
+          </tr>
+          <tr>
+            <td>Late deliveries</td>
+            <td class="td-mono" style="color:var(--muted);">40% (0.40)</td>
+            <td class="td-mono" style="color:var(--accent);">−50,000</td>
+            <td class="td-mono" style="color:var(--accent);">−20,000</td>
+          </tr>
+          <tr>
+            <td>Marketing success</td>
+            <td class="td-mono" style="color:var(--muted);">25% (0.25)</td>
+            <td class="td-mono" style="color:var(--ch8);">+120,000</td>
+            <td class="td-mono" style="color:var(--ch8);">+30,000</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="emv-total">
+        <span style="color:var(--muted);">Total Project EMV</span>
+        <span style="color:var(--accent);font-weight:600;">−$50,000</span>
       </div>
-      <div class="callout callout-purple" style="margin-top:10px;">
-        <strong>Interpretation:</strong> QuickBite needs a risk reserve of at least <strong>$50,000</strong> to cover expected losses from identified risks. The negative total indicates threats outweigh identified opportunities.
+      <div class="callout c-purple" style="margin-top:10px;">
+        <strong>Interpretation:</strong> QuickBite needs a risk reserve of at least <strong>$50,000</strong>. The negative total means threats currently outweigh identified opportunities.
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════
-       CHEAT SHEET
-  ══════════════════════ -->
-  <div id="cheat" class="ch-header" style="margin-top:5rem;">
-    <div class="ch-num" style="color:var(--accent);font-size:1.5rem;">★</div>
+  <!-- CHEAT SHEET -->
+  <div id="cheat" class="ch-header" style="margin-top:4.5rem;">
+    <div class="ch-num" style="color:var(--accent);font-size:1.4rem;">★</div>
     <div class="ch-label">
       <h2>Quick Cheat Sheet</h2>
-      <p>All key answers at a glance</p>
+      <p>All key answers at a glance — from the slides</p>
     </div>
   </div>
 
   <div class="cheat-section">
     <div class="cheat-label">Chapter 8 — CMMI & Expected Cost</div>
     <div class="cheat-grid">
-      <div class="cheat-row"><span class="cheat-q">CMMI Level focusing on planning & config mgmt</span><span class="cheat-a ca-8">Level 2 — Managed</span></div>
-      <div class="cheat-row"><span class="cheat-q">EC formula</span><span class="cheat-a ca-8">Σ (P × Cost)</span></div>
-      <div class="cheat-row"><span class="cheat-q">Chaotic, hero-based level</span><span class="cheat-a ca-8">Level 1 — Initial</span></div>
-      <div class="cheat-row"><span class="cheat-q">Org-wide standard process</span><span class="cheat-a ca-8">Level 3 — Defined</span></div>
-      <div class="cheat-row"><span class="cheat-q">Uses statistics to predict outcomes</span><span class="cheat-a ca-8">Level 4 — Quantitative</span></div>
-      <div class="cheat-row"><span class="cheat-q">Root cause analysis + continuous improvement</span><span class="cheat-a ca-8">Level 5 — Optimizing</span></div>
-      <div class="cheat-row"><span class="cheat-q">Decision rule for expected cost</span><span class="cheat-a ca-8">Choose lowest EC</span></div>
-      <div class="cheat-row"><span class="cheat-q">Best maturity level result</span><span class="cheat-a ca-8">Level 5</span></div>
+      <div class="cheat-row"><span class="cheat-q">Which level: planning, requirements, config mgmt?</span><span class="cheat-a ca8">Level 2 — Managed</span></div>
+      <div class="cheat-row"><span class="cheat-q">EC formula</span><span class="cheat-a ca8">Σ (P × Cost)</span></div>
+      <div class="cheat-row"><span class="cheat-q">Ad hoc, hero-based, chaotic</span><span class="cheat-a ca8">Level 1 — Initial</span></div>
+      <div class="cheat-row"><span class="cheat-q">Org-wide standard process</span><span class="cheat-a ca8">Level 3 — Defined</span></div>
+      <div class="cheat-row"><span class="cheat-q">Measured & statistically predictable</span><span class="cheat-a ca8">Level 4 — Quantitative</span></div>
+      <div class="cheat-row"><span class="cheat-q">Root cause analysis + continuous improvement</span><span class="cheat-a ca8">Level 5 — Optimizing</span></div>
+      <div class="cheat-row"><span class="cheat-q">Best maturity result</span><span class="cheat-a ca8">Level 5</span></div>
+      <div class="cheat-row"><span class="cheat-q">Best practical first goal</span><span class="cheat-a ca8">Level 3</span></div>
+      <div class="cheat-row"><span class="cheat-q">Decision rule for expected cost</span><span class="cheat-a ca8">Lowest EC wins</span></div>
+      <div class="cheat-row"><span class="cheat-q">Build EC</span><span class="cheat-a ca8">$429,000</span></div>
+      <div class="cheat-row"><span class="cheat-q">Reuse EC</span><span class="cheat-a ca8">$382,400 ✓</span></div>
+      <div class="cheat-row"><span class="cheat-q">Savings from Reuse</span><span class="cheat-a ca8">$46,600</span></div>
     </div>
   </div>
 
   <div class="cheat-section">
-    <div class="cheat-label">Chapter 7 — Risk Management</div>
+    <div class="cheat-label">Chapter 7 — Risk Management Steps</div>
     <div class="cheat-grid">
-      <div class="cheat-row"><span class="cheat-q">Step 1 of risk management</span><span class="cheat-a ca-7">Identification</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 2 — measure each risk</span><span class="cheat-a ca-7">P × Severity = Score</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 3 — rank risks</span><span class="cheat-a ca-7">Evaluation / Heat Map</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 4 — choose a strategy</span><span class="cheat-a ca-7">Response (4 T's)</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 5 — track continuously</span><span class="cheat-a ca-7">Monitor & Document</span></div>
-      <div class="cheat-row"><span class="cheat-q">EMV formula</span><span class="cheat-a ca-7">P × Impact</span></div>
-      <div class="cheat-row"><span class="cheat-q">Stop the activity entirely</span><span class="cheat-a ca-7">Terminate</span></div>
-      <div class="cheat-row"><span class="cheat-q">Reduce probability or impact</span><span class="cheat-a ca-7">Treat</span></div>
-      <div class="cheat-row"><span class="cheat-q">Move risk to third party</span><span class="cheat-a ca-7">Transfer</span></div>
-      <div class="cheat-row"><span class="cheat-q">Accept low-impact risk</span><span class="cheat-a ca-7">Tolerate</span></div>
-      <div class="cheat-row"><span class="cheat-q">Failure in internal systems/people</span><span class="cheat-a ca-7">Operational Risk</span></div>
-      <div class="cheat-row"><span class="cheat-q">Budget overruns or low revenue</span><span class="cheat-a ca-7">Financial Risk</span></div>
-      <div class="cheat-row"><span class="cheat-q">Legal/regulatory violations</span><span class="cheat-a ca-7">Compliance Risk</span></div>
-      <div class="cheat-row"><span class="cheat-q">Brand/image damage</span><span class="cheat-a ca-7">Reputational Risk</span></div>
-      <div class="cheat-row"><span class="cheat-q">Hacking or data breach</span><span class="cheat-a ca-7">Cyber Risk</span></div>
-      <div class="cheat-row"><span class="cheat-q">EMV < 0 means</span><span class="cheat-a ca-r">Need risk reserve</span></div>
+      <div class="cheat-row"><span class="cheat-q">Step 1</span><span class="cheat-a ca7">Identifying Risk</span></div>
+      <div class="cheat-row"><span class="cheat-q">Step 2</span><span class="cheat-a ca7">Determining Probabilities (P × Severity)</span></div>
+      <div class="cheat-row"><span class="cheat-q">Step 3</span><span class="cheat-a ca7">Evaluation / Heat Map</span></div>
+      <div class="cheat-row"><span class="cheat-q">Step 4</span><span class="cheat-a ca7">Planning Responses (4 T's)</span></div>
+      <div class="cheat-row"><span class="cheat-q">Step 5</span><span class="cheat-a ca7">Documenting & Communicating</span></div>
+      <div class="cheat-row"><span class="cheat-q">EMV formula</span><span class="cheat-a ca7">P × Impact</span></div>
+    </div>
+  </div>
+
+  <div class="cheat-section">
+    <div class="cheat-label">Chapter 7 — The 4 T's</div>
+    <div class="cheat-grid">
+      <div class="cheat-row"><span class="cheat-q">Stop the activity entirely</span><span class="cheat-a ca7">Terminate</span></div>
+      <div class="cheat-row"><span class="cheat-q">Lower probability or impact</span><span class="cheat-a ca7">Treat</span></div>
+      <div class="cheat-row"><span class="cheat-q">Move burden to a third party</span><span class="cheat-a ca7">Transfer</span></div>
+      <div class="cheat-row"><span class="cheat-q">Accept low-impact risk</span><span class="cheat-a ca7">Tolerate</span></div>
+    </div>
+  </div>
+
+  <div class="cheat-section">
+    <div class="cheat-label">Chapter 7 — Risk Types</div>
+    <div class="cheat-grid">
+      <div class="cheat-row"><span class="cheat-q">GPS errors, logistics failures</span><span class="cheat-a ca7">Operational</span></div>
+      <div class="cheat-row"><span class="cheat-q">Budget overruns, low sales</span><span class="cheat-a ca7">Financial</span></div>
+      <div class="cheat-row"><span class="cheat-q">Labor laws, food regulations</span><span class="cheat-a ca7">Compliance</span></div>
+      <div class="cheat-row"><span class="cheat-q">Viral scandals, bad reviews</span><span class="cheat-a ca7">Reputational</span></div>
+      <div class="cheat-row"><span class="cheat-q">Hacking, data breaches</span><span class="cheat-a ca7">Cyber</span></div>
+      <div class="cheat-row"><span class="cheat-q">EMV total < 0 means</span><span class="cheat-a cax">Need risk reserve</span></div>
     </div>
   </div>
 
@@ -885,14 +822,13 @@ body {
 <div class="footer">Software Project Management · Spring 2026 · Good luck 🎯</div>
 
 <script>
-function toggle(trigger) {
+function tog(trigger) {
   const body = trigger.nextElementSibling;
   const arrow = trigger.querySelector('.q-arrow');
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  arrow.classList.toggle('open', !isOpen);
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  arrow.classList.toggle('open', !open);
 }
-// open first card
 document.querySelector('.q-trigger').click();
 </script>
 </body>
