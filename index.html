@@ -245,6 +245,17 @@ body[dir="rtl"] .subsec { font-family: var(--font-ar); letter-spacing: 0; text-t
 .qb-8 { background: var(--emerald-dim); color: var(--emerald); }
 .qb-7 { background: var(--violet-dim); color: var(--violet); }
 .q-title { flex: 1; font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--text); }
+.feat-badge {
+  display: inline-block; font-family: var(--font-mono);
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em;
+  color: #0a0b0f; background: linear-gradient(135deg, var(--amber), #fcd34d);
+  padding: 2px 8px; border-radius: 6px; margin-inline-end: 8px;
+  vertical-align: middle; white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(251,191,36,0.3);
+}
+body[dir="rtl"] .feat-badge { font-family: var(--font-ar); letter-spacing: 0; }
+.q-card.feat { border-color: rgba(251,191,36,0.35); }
+.q-card.feat .q-badge { background: var(--amber-dim); color: var(--amber); }
 .q-arrow {
   font-size: 18px; color: var(--muted); flex-shrink: 0;
   transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
@@ -688,7 +699,8 @@ const UI = {
     cheat_title: "Quick Cheat Sheet", cheat_sub: "Every key answer at a glance",
     footer: "Software Project Management · Spring 2026 · Good luck 🎯",
     answer: "Answer", correct_ans: "Correct answer", explanation: "Explanation",
-    tf_true: "TRUE", tf_false: "FALSE"
+    tf_true: "TRUE", tf_false: "FALSE",
+    featured: "★ Professor's Q"
   },
   ar: {
     brand: "دليل مذاكرة SPM",
@@ -704,13 +716,19 @@ const UI = {
     cheat_title: "ملخص سريع", cheat_sub: "كل إجابة رئيسية في لمحة",
     footer: "إدارة مشاريع البرمجيات · ربيع ٢٠٢٦ · بالتوفيق 🎯",
     answer: "الإجابة", correct_ans: "الإجابة الصحيحة", explanation: "الشرح",
-    tf_true: "صحيحة", tf_false: "خاطئة"
+    tf_true: "صحيحة", tf_false: "خاطئة",
+    featured: "★ سؤال الدكتور"
   }
 };
 /* ════════════════════════════════════════════
    30 QUESTIONS — bilingual
 ════════════════════════════════════════════ */
 const MCQ = [
+  { ch:"8", featured:true,
+    en:{q:"Which CMMI Maturity Level primarily focuses on project planning, requirements management, and configuration management?", a:"Level 2 — Managed",
+        ex:"<strong>Level 2 (Managed)</strong> is the project-level control stage. Its core process areas are Requirements Management (REQM), Project Planning (PP), Project Monitoring & Control (PMC), and Configuration Management (CM). Each project is planned, tracked, and version-controlled — even before the organization adopts one shared standard process (which comes at Level 3)."},
+    ar:{q:"أي مستوى نضج في CMMI يركّز بشكل أساسي على تخطيط المشروع وإدارة المتطلبات وإدارة الإعدادات؟", a:"المستوى ٢ — المُدار (Managed)",
+        ex:"<strong>المستوى ٢ (المُدار)</strong> هو مرحلة التحكم على مستوى المشروع. مناطق عملياته الأساسية: إدارة المتطلبات (REQM)، تخطيط المشروع (PP)، المراقبة والتحكم (PMC)، وإدارة الإعدادات (CM). كل مشروع يُخطَّط ويُتتبَّع وتُتحكَّم إصداراته — حتى قبل أن تتبنّى المنظمة عملية معيارية موحّدة (وهذه تأتي في المستوى ٣)."}},
   { ch:"5",
     en:{q:"COCOMO I classifies software development modes into which three categories?", a:"Organic, Semi-detached, Embedded",
         ex:"COCOMO I defines three project modes based on size and complexity: <strong>Organic</strong> (small, familiar teams — lowest coefficients a=2.4, b=1.05), <strong>Semi-detached</strong> (medium), and <strong>Embedded</strong> (large, tightly-constrained, highest effort). The mode sets the constants used in Effort = a × (KLOC)^b."},
@@ -776,16 +794,11 @@ const MCQ = [
         ex:"After computing EC = Σ(Probability × Cost) for each branch, the <strong>rational choice is the option with the lowest expected cost</strong>. In the System X example, Reuse ($382,400) beats Build ($429,000), saving $46,600."},
     ar:{q:"في تحليل شجرة القرار للتكلفة المتوقعة، ما القاعدة الاقتصادية الرشيدة المستخدمة للاختيار بين بناء النظام أو إعادة استخدامه؟", a:"اختيار البديل ذي التكلفة المتوقعة الأقل",
         ex:"بعد حساب EC = مجموع (الاحتمالية × التكلفة) لكل فرع، فإن <strong>الاختيار الرشيد هو الخيار ذو التكلفة المتوقعة الأقل</strong>. في مثال النظام X، تتفوق إعادة الاستخدام (٣٨٢,٤٠٠$) على البناء (٤٢٩,٠٠٠$)، موفّرةً ٤٦,٦٠٠$."}},
-  { ch:"6",
-    en:{q:"In Project Scheduling, what does \"Slack\" or \"Float\" represent?", a:"The time an activity can be delayed without affecting the project completion date",
-        ex:"<strong>Slack (Float)</strong> = how long a non-critical activity can slip before it pushes the project finish date. Computed as Slack = LS − ES (or LF − EF). Critical activities have zero slack."},
-    ar:{q:"في جدولة المشاريع، ماذا يمثّل \"الفائض\" (Slack/Float)؟", a:"المدة التي يمكن تأخير النشاط خلالها دون التأثير على تاريخ إنجاز المشروع",
-        ex:"<strong>الفائض (Float)</strong> = المدة التي يمكن أن يتأخر فيها نشاط غير حرج قبل أن يدفع تاريخ انتهاء المشروع. يُحسب بـ الفائض = LS − ES (أو LF − EF). الأنشطة الحرجة فائضها صفر."}},
-  { ch:"5",
-    en:{q:"In COCOMO I Intermediate model, the product of the 15 cost drivers is called the:", a:"Effort Adjustment Factor (EAF)",
-        ex:"The Intermediate COCOMO I multiplies 15 cost-driver ratings together to get the <strong>Effort Adjustment Factor (EAF)</strong>, which then scales the nominal effort: Effort = a × (KLOC)^b × EAF."},
-    ar:{q:"في النموذج المتوسط لـ COCOMO I، يُسمّى حاصل ضرب الـ15 عامل تكلفة بـ:", a:"عامل تعديل الجهد (EAF)",
-        ex:"يضرب نموذج COCOMO I المتوسط تقييمات الـ١٥ عامل تكلفة معاً للحصول على <strong>عامل تعديل الجهد (EAF)</strong>، الذي يُقيّس الجهد الاسمي: الجهد = a × (KLOC)^b × EAF."}}
+  { ch:"8",
+    en:{q:"In CMMI, which process area answers the question \"Are we building the right product?\"", a:"Validation (VAL)",
+        ex:"From the slides: <strong>Verification</strong> = \"Are we building the product right?\" (confirms it matches the specifications), while <strong>Validation</strong> = \"Are we building the right product?\" (confirms it satisfies the user's real needs in its intended environment). Both VER and VAL are Level 3 process areas."},
+    ar:{q:"في CMMI، أي منطقة عملية تجيب على سؤال \"هل نبني المنتج الصحيح؟\"", a:"المصادقة (Validation / VAL)",
+        ex:"من السلايدات: <strong>التحقق (Verification)</strong> = \"هل نبني المنتج بشكل صحيح؟\" (يؤكد مطابقته للمواصفات)، بينما <strong>المصادقة (Validation)</strong> = \"هل نبني المنتج الصحيح؟\" (تؤكد أنه يلبي احتياجات المستخدم الحقيقية في بيئته المقصودة). كلاهما VER وVAL من مناطق العمليات في المستوى ٣."}}
 ];
 
 const TF = [
@@ -1108,9 +1121,13 @@ function renderMCQ() {
   let html = "";
   MCQ.forEach((item, i) => {
     const d = item[LANG];
+    const star = item.featured ? `<span class="feat-badge">${t.featured}</span>` : "";
     const body = `<div class="ans-pill"><span class="ans-pill-label">${t.correct_ans}:</span> ${d.a}</div>
       <p class="ans-explain"><strong>${t.explanation}:</strong> ${d.ex}</p>`;
-    html += qCard(`MCQ ${i+1}`, "qb-mcq", d.q, body, false);
+    const title = star + d.q;
+    let card = qCard(`MCQ ${i+1}`, "qb-mcq", title, body, false);
+    if (item.featured) card = card.replace('class="q-card"', 'class="q-card feat"');
+    html += card;
   });
   document.getElementById("mcqList").innerHTML = html;
 }
