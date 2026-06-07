@@ -1,32 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exam Study Guide — Ch.7 & Ch.8</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Exam Study Guide — Ch.5–8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0e0f13;
-  --surface: #14161c;
-  --card: #1a1d26;
-  --card2: #1e2230;
-  --border: #262b3a;
-  --border2: #2e3448;
-  --text: #dde0ea;
-  --muted: #6b7290;
-  --ch8: #4db88a;
-  --ch8-dim: #1a3328;
-  --ch8-mid: #2d7a5c;
-  --ch7: #9b7fe8;
-  --ch7-dim: #251d40;
-  --ch7-mid: #6a4fc0;
-  --accent: #e06b4a;
-  --accent-dim: #301810;
-  --gold: #d4a94a;
-  --gold-dim: #2a1f08;
-  --red: #e05555;
-  --green: #4db88a;
+  --bg: #0a0b0f;
+  --bg2: #0e1015;
+  --surface: #13151c;
+  --card: #181b24;
+  --card-hover: #1d212c;
+  --glass: rgba(24,27,36,0.6);
+  --glass-border: rgba(255,255,255,0.06);
+  --border: #242936;
+  --border2: #2d3342;
+  --text: #e4e7ef;
+  --text-dim: #aab0c4;
+  --muted: #6a7187;
+  --indigo: #7c7bf5;
+  --indigo-dim: rgba(124,123,245,0.12);
+  --indigo-glow: rgba(124,123,245,0.3);
+  --violet: #a78bfa;
+  --violet-dim: rgba(167,139,250,0.12);
+  --emerald: #34d399;
+  --emerald-dim: rgba(52,211,153,0.12);
+  --rose: #fb7185;
+  --rose-dim: rgba(251,113,133,0.12);
+  --amber: #fbbf24;
+  --amber-dim: rgba(251,191,36,0.12);
+  --sky: #38bdf8;
+  --sky-dim: rgba(56,189,248,0.12);
+  --font-en: 'Inter', sans-serif;
+  --font-ar: 'Cairo', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,801 +45,1156 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14.5px;
+  font-family: var(--font-en);
+  font-size: 15px;
   line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
+body[dir="rtl"] { font-family: var(--font-ar); }
+body[dir="rtl"] .mono-keep { font-family: var(--font-mono); direction: ltr; unicode-bidi: embed; }
 
-/* ── HERO ── */
-.hero {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 4.5rem 3rem 3.5rem;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
+/* Ambient background glow */
+body::before {
   content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(77,184,138,0.07) 0%, transparent 70%);
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 50% 40% at 15% 0%, rgba(124,123,245,0.08), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 10%, rgba(52,211,153,0.05), transparent 70%);
   pointer-events: none;
 }
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -40px; left: 30%;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(155,127,232,0.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-tag {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; color: var(--ch8);
-  letter-spacing: 0.18em; text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 300; line-height: 1.15;
-  color: #eceef5;
-  margin-bottom: 0.8rem; max-width: 650px;
-}
-.hero h1 em { font-style: italic; color: var(--ch8); }
-.hero-sub { color: var(--muted); font-size: 13px; max-width: 480px; margin-bottom: 2rem; }
-.hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
-.hero-pill {
-  font-size: 11px; font-weight: 500;
-  padding: 5px 14px; border-radius: 2px;
-  border: 1px solid; letter-spacing: 0.03em;
-}
-.pill-8 { border-color: rgba(77,184,138,0.4); color: var(--ch8); background: var(--ch8-dim); }
-.pill-7 { border-color: rgba(155,127,232,0.4); color: var(--ch7); background: var(--ch7-dim); }
 
-/* ── NAV ── */
-.sticky-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(14,15,19,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 2.5rem;
-  display: flex; align-items: center;
-  overflow-x: auto;
+/* ─────────── NAV ─────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(10,11,15,0.7);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid var(--glass-border);
 }
-.nav-item {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--muted); text-decoration: none;
-  padding: 13px 16px;
-  border-bottom: 2px solid transparent;
+.topbar-inner {
+  max-width: 1000px; margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  height: 60px;
+}
+.brand {
+  font-weight: 600; font-size: 15px; color: var(--text);
+  display: flex; align-items: center; gap: 9px;
   white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s;
 }
-.nav-item:hover.n8 { border-color: var(--ch8); color: var(--ch8); }
-.nav-item:hover.n7 { border-color: var(--ch7); color: var(--ch7); }
-.nav-item:hover.ns { border-color: var(--accent); color: var(--accent); }
+.brand-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--indigo);
+  box-shadow: 0 0 12px var(--indigo-glow);
+}
+.nav-links { display: flex; gap: 2px; margin-inline-start: auto; }
+.nav-link {
+  font-size: 12.5px; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  padding: 7px 13px; border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.nav-link:hover { color: var(--text); background: var(--card); }
 
-/* ── LAYOUT ── */
-.main { max-width: 880px; margin: 0 auto; padding: 2.5rem 2rem 6rem; }
+/* Language toggle */
+.lang-toggle {
+  display: inline-flex; align-items: center;
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 10px; padding: 3px; cursor: pointer;
+  font-family: var(--font-en); position: relative;
+  margin-inline-start: 8px;
+}
+.lang-opt {
+  font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: 7px;
+  color: var(--muted); transition: color 0.25s;
+  z-index: 1; user-select: none;
+}
+.lang-opt.active { color: #fff; }
+.lang-slider {
+  position: absolute; top: 3px; bottom: 3px;
+  width: calc(50% - 3px);
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  border-radius: 7px;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 2px 10px var(--indigo-glow);
+}
+.lang-slider.en { transform: translateX(0); left: 3px; }
+.lang-slider.ar { transform: translateX(100%); left: 3px; }
+body[dir="rtl"] .lang-slider.en { transform: translateX(0); }
+body[dir="rtl"] .lang-slider.ar { transform: translateX(-100%); }
 
-/* ── CHAPTER HEADER ── */
-.ch-header {
-  display: flex; align-items: baseline; gap: 14px;
+/* ─────────── HERO ─────────── */
+.hero {
+  max-width: 1000px; margin: 0 auto;
+  padding: 4.5rem 1.5rem 2.5rem;
+  position: relative;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--indigo); background: var(--indigo-dim);
+  border: 1px solid rgba(124,123,245,0.2);
+  padding: 5px 13px; border-radius: 20px;
+  letter-spacing: 0.05em; margin-bottom: 1.4rem;
+}
+body[dir="rtl"] .hero-badge { font-family: var(--font-ar); letter-spacing: 0; }
+.hero h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 30%, #b8bcd0);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body[dir="rtl"] .hero h1 { letter-spacing: -0.01em; line-height: 1.25; }
+.hero-sub {
+  font-size: 16px; color: var(--text-dim);
+  max-width: 560px; margin-bottom: 2rem;
+}
+.hero-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
+.stat-pill {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px; padding: 14px 18px;
+  min-width: 130px;
+}
+.stat-num {
+  font-size: 1.7rem; font-weight: 700;
+  font-family: var(--font-mono);
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.stat-lbl { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+
+/* ─────────── LAYOUT ─────────── */
+.main { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem 6rem; }
+
+.section-head {
+  display: flex; align-items: center; gap: 14px;
   margin: 3.5rem 0 1.5rem;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border2);
 }
-.ch-num {
-  font-family: 'Fraunces', serif;
-  font-size: 2.8rem; font-weight: 300; line-height: 1;
-  opacity: 0.9;
+.section-head:first-child { margin-top: 1rem; }
+.sh-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px; flex-shrink: 0;
+  border: 1px solid;
 }
-.ch-label h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 1.3rem; font-weight: 300; color: #eceef5;
-}
-.ch-label p { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
-.ch-marks {
-  margin-left: auto;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; color: var(--muted);
-  background: var(--card); border: 1px solid var(--border);
-  padding: 3px 9px; border-radius: 2px;
+.shi-indigo { background: var(--indigo-dim); border-color: rgba(124,123,245,0.25); }
+.shi-emerald { background: var(--emerald-dim); border-color: rgba(52,211,153,0.25); }
+.shi-violet { background: var(--violet-dim); border-color: rgba(167,139,250,0.25); }
+.shi-amber { background: var(--amber-dim); border-color: rgba(251,191,36,0.25); }
+.sh-text h2 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+body[dir="rtl"] .sh-text h2 { letter-spacing: 0; }
+.sh-text p { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+.sh-marks {
+  margin-inline-start: auto;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-dim); background: var(--card);
+  border: 1px solid var(--border); padding: 4px 11px; border-radius: 8px;
+  white-space: nowrap;
 }
 
-/* ── QUESTION CARD ── */
+/* Sub-section label */
+.subsec {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin: 1.8rem 0 0.8rem;
+  display: flex; align-items: center; gap: 10px;
+}
+body[dir="rtl"] .subsec { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; }
+.subsec::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─────────── Q CARD (accordion) ─────────── */
 .q-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  margin-bottom: 10px;
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px; margin-bottom: 10px;
   overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+  animation: fadeUp 0.5s ease both;
+}
+.q-card:hover { border-color: var(--border2); }
+.q-card.open { border-color: rgba(124,123,245,0.3); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .q-trigger {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 15px 18px; cursor: pointer;
-  transition: background 0.15s;
+  display: flex; align-items: flex-start; gap: 13px;
+  padding: 16px 18px; cursor: pointer;
+  transition: background 0.2s;
 }
-.q-trigger:hover { background: var(--card2); }
+.q-trigger:hover { background: rgba(255,255,255,0.02); }
 .q-badge {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; font-weight: 600;
-  padding: 3px 8px; border-radius: 2px;
-  white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  padding: 4px 8px; border-radius: 7px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+  min-width: 38px; text-align: center;
 }
-.b8 { background: var(--ch8-dim); color: var(--ch8); }
-.b7 { background: var(--ch7-dim); color: var(--ch7); }
-.q-text { flex: 1; }
-.q-title { font-size: 13.5px; font-weight: 500; color: #dde0ea; line-height: 1.45; }
-.q-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.q-marks {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; color: var(--muted); flex-shrink: 0; margin-top: 3px;
+.qb-mcq { background: var(--indigo-dim); color: var(--indigo); }
+.qb-tf { background: var(--sky-dim); color: var(--sky); }
+.qb-8 { background: var(--emerald-dim); color: var(--emerald); }
+.qb-7 { background: var(--violet-dim); color: var(--violet); }
+.q-title { flex: 1; font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--text); }
+.q-arrow {
+  font-size: 18px; color: var(--muted); flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  line-height: 1; margin-top: 2px;
 }
-.q-arrow { font-size: 11px; color: var(--muted); transition: transform 0.22s; flex-shrink: 0; margin-top: 4px; }
-.q-arrow.open { transform: rotate(180deg); }
+body[dir="rtl"] .q-arrow { transform: scaleX(-1); }
+.q-card.open .q-arrow { transform: rotate(180deg); }
+body[dir="rtl"] .q-card.open .q-arrow { transform: rotate(180deg) scaleX(-1); }
 
 .q-body {
-  display: none;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.q-card.open .q-body { max-height: 2500px; }
+.q-body-inner {
+  padding: 0 18px 18px;
   border-top: 1px solid var(--border);
-  padding: 20px 20px 22px;
-  background: var(--bg);
+  margin-top: 0; padding-top: 16px;
 }
-.q-body.open { display: block; }
 
-/* ── CONTENT ── */
-.ans-lead { font-size: 13.5px; color: var(--text); line-height: 1.75; margin-bottom: 12px; }
+/* Answer pill */
+.ans-pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--emerald-dim); border: 1px solid rgba(52,211,153,0.25);
+  color: var(--emerald); font-weight: 600; font-size: 14px;
+  padding: 9px 16px; border-radius: 10px; margin-bottom: 12px;
+}
+.ans-pill.false-pill { background: var(--rose-dim); border-color: rgba(251,113,133,0.25); color: var(--rose); }
+.ans-pill-label { font-size: 11px; opacity: 0.7; font-weight: 500; }
+.ans-explain { font-size: 13.5px; color: var(--text-dim); line-height: 1.75; }
+.ans-explain strong { color: var(--text); font-weight: 600; }
 
-/* Table */
-.dtable { width: 100%; border-collapse: collapse; font-size: 13px; border-radius: 4px; overflow: hidden; margin: 10px 0; }
+/* ─────────── TABLES ─────────── */
+.dtable { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
 .dtable th {
-  text-align: left; padding: 7px 11px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
-  color: var(--muted); background: var(--card2);
-  border-bottom: 1px solid var(--border2);
+  text-align: start; padding: 9px 12px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  background: var(--card); border-bottom: 1px solid var(--border2);
 }
-.dtable td {
-  padding: 9px 11px; border-bottom: 1px solid var(--border);
-  vertical-align: top; line-height: 1.55; color: var(--text);
-}
+body[dir="rtl"] .dtable th { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; }
+.dtable td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
 .dtable tr:last-child td { border-bottom: none; }
-.dtable tr:hover td { background: rgba(255,255,255,0.018); }
-.td-k { font-weight: 500; color: #eceef5; white-space: nowrap; }
-.td-mono { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ch8); font-weight: 600; }
+.dtable tbody tr { transition: background 0.15s; }
+.dtable tbody tr:hover td { background: rgba(255,255,255,0.02); }
+.td-k { font-weight: 600; color: var(--text); white-space: nowrap; }
 
-/* CMMI level badges */
-.lvl { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; padding:2px 8px; border-radius:2px; }
-.l1 { background:#2a1010; color:#e07070; }
-.l2 { background:#2a1f08; color:var(--gold); }
-.l3 { background:#0d2030; color:#6ab0e0; }
-.l4 { background:var(--ch8-dim); color:var(--ch8); }
-.l5 { background:var(--ch7-dim); color:var(--ch7); }
+.lvl { display:inline-block; font-family:var(--font-mono); font-size:11px; font-weight:600; padding:3px 9px; border-radius:7px; }
+.l1 { background: var(--rose-dim); color: var(--rose); }
+.l2 { background: var(--amber-dim); color: var(--amber); }
+.l3 { background: var(--sky-dim); color: var(--sky); }
+.l4 { background: var(--emerald-dim); color: var(--emerald); }
+.l5 { background: var(--violet-dim); color: var(--violet); }
 
-/* Formula */
+/* ─────────── FORMULA ─────────── */
 .formula {
-  background: var(--card2); border: 1px solid var(--border2);
-  border-left: 3px solid var(--ch8);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px; padding: 12px 16px;
-  border-radius: 0 4px 4px 0; margin: 10px 0;
-  color: #eceef5; letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--card), var(--surface));
+  border: 1px solid var(--border2);
+  border-inline-start: 3px solid var(--emerald);
+  font-family: var(--font-mono); font-size: 13.5px;
+  padding: 13px 17px; border-radius: 10px; margin: 12px 0;
+  color: var(--text); letter-spacing: 0.02em;
 }
-.formula span { color: var(--ch8); }
+.formula b { color: var(--emerald); }
 
-/* Calc steps */
-.calc-steps { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+/* ─────────── CALC STEPS ─────────── */
+.calc-steps { display: flex; flex-direction: column; gap: 9px; margin: 12px 0; }
 .calc-step {
   background: var(--card); border: 1px solid var(--border);
-  border-radius: 4px; padding: 13px 16px;
-  display: flex; gap: 12px; align-items: flex-start;
+  border-radius: 12px; padding: 14px 16px;
+  display: flex; gap: 13px; align-items: flex-start;
 }
 .calc-n {
-  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600;
-  background: var(--ch8-dim); color: var(--ch8); border: 1px solid rgba(77,184,138,0.3);
-  width: 24px; height: 24px; border-radius: 50%;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  background: var(--emerald-dim); color: var(--emerald);
+  border: 1px solid rgba(52,211,153,0.3);
+  width: 26px; height: 26px; border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-top: 1px;
+  flex-shrink: 0;
 }
 .calc-body { flex: 1; }
-.calc-title { font-weight: 500; font-size: 13px; color: #eceef5; margin-bottom: 5px; }
-.calc-math { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); line-height: 1.8; }
-.calc-res { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: var(--ch8); margin-top: 4px; }
+.calc-title { font-weight: 600; font-size: 13.5px; color: var(--text); margin-bottom: 6px; }
+.calc-math { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); line-height: 1.9; direction: ltr; }
+body[dir="rtl"] .calc-math { text-align: left; }
+.calc-res { font-family: var(--font-mono); font-size: 13.5px; font-weight: 600; color: var(--emerald); margin-top: 5px; direction: ltr; }
+body[dir="rtl"] .calc-res { text-align: left; }
 
-/* Decision */
-.dec-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
-.dec-card {
-  border: 1px solid var(--border); border-radius: 4px;
-  padding: 14px 16px; background: var(--card);
+/* ─────────── DECISION ─────────── */
+.dec-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin: 12px 0; }
+.dec-card { border: 1px solid var(--border); border-radius: 12px; padding: 15px 17px; background: var(--card); }
+.dec-card.win { border-color: var(--emerald); background: var(--emerald-dim); }
+.dc-lbl { font-size: 11.5px; color: var(--muted); margin-bottom: 7px; font-weight: 500; }
+.dc-val { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--text); }
+.dc-val.g { color: var(--emerald); }
+.dc-save { font-size: 12px; color: var(--emerald); margin-top: 5px; font-weight: 600; }
+
+/* ─────────── STEPS LIST (Q4) ─────────── */
+.hierarchy {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px; margin-bottom: 14px;
+  font-size: 12.5px; color: var(--text-dim);
 }
-.dec-card.win { border-color: var(--ch8); border-width: 1.5px; background: var(--ch8-dim); }
-.dc-lbl { font-size: 11px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
-.dc-val { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: #eceef5; }
-.dc-val.g { color: var(--ch8); }
-.dc-save { font-size: 11.5px; color: var(--ch8); margin-top: 4px; font-weight: 500; }
-
-/* Steps list */
-.steps-list { display: flex; flex-direction: column; }
+.hierarchy b { color: var(--indigo); }
+.hier-arrow { color: var(--muted); margin: 0 6px; }
+.steps-list { display: flex; flex-direction: column; gap: 8px; }
 .step-item {
-  display: flex; gap: 0;
-  border: 1px solid var(--border); border-bottom: none;
-  background: var(--card);
+  display: flex; gap: 13px; align-items: flex-start;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px;
+  transition: border-color 0.2s, transform 0.2s;
 }
-.step-item:first-child { border-radius: 4px 4px 0 0; }
-.step-item:last-child { border-radius: 0 0 4px 4px; border-bottom: 1px solid var(--border); }
-.step-side {
-  width: 46px; flex-shrink: 0;
-  display: flex; align-items: flex-start; justify-content: center;
-  padding-top: 14px; border-right: 1px solid var(--border);
+.step-item:hover { border-color: rgba(167,139,250,0.3); transform: translateX(2px); }
+body[dir="rtl"] .step-item:hover { transform: translateX(-2px); }
+.step-n {
+  width: 30px; height: 30px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--violet), var(--indigo));
+  color: #fff; font-family: var(--font-mono); font-weight: 600; font-size: 13px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(167,139,250,0.3);
 }
-.step-circle {
-  width: 24px; height: 24px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600;
-  background: var(--ch7-dim); color: var(--ch7); border: 1px solid rgba(155,127,232,0.3);
-}
-.step-main { flex: 1; padding: 13px 15px; }
-.step-name { font-weight: 500; font-size: 13px; color: #eceef5; margin-bottom: 3px; }
-.step-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
-.step-eg { font-size: 12px; color: var(--ch7); margin-top: 5px; font-style: italic; }
+.step-c { flex: 1; }
+.step-name { font-weight: 600; font-size: 13.5px; color: var(--text); margin-bottom: 3px; }
+.step-desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.6; }
+.step-eg { font-size: 12px; color: var(--violet); margin-top: 6px; font-style: italic; }
+body[dir="rtl"] .step-eg { font-style: normal; }
 
-/* 4Ts */
-.ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
+/* ─────────── 4 Ts ─────────── */
+.ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
 .t-card {
-  border: 1px solid var(--border); border-radius: 4px;
-  padding: 13px 15px; background: var(--card);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 16px; background: var(--card);
+  transition: border-color 0.2s, transform 0.2s;
 }
-.t-name { font-weight: 500; font-size: 13px; color: #eceef5; margin-bottom: 5px; }
-.t-icon { display: inline-block; margin-right: 6px; }
-.t-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
-.t-eg { font-size: 11.5px; color: var(--ch7); margin-top: 5px; font-style: italic; }
+.t-card:hover { border-color: rgba(167,139,250,0.3); transform: translateY(-2px); }
+.t-name { font-weight: 600; font-size: 13.5px; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.t-icon { font-size: 16px; }
+.t-desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.6; }
+.t-eg { font-size: 11.5px; color: var(--violet); margin-top: 6px; font-style: italic; }
+body[dir="rtl"] .t-eg { font-style: normal; }
 
-/* Risk rows */
-.risk-grid { display: flex; flex-direction: column; gap: 7px; margin: 10px 0; }
+/* ─────────── RISK ROWS ─────────── */
+.risk-grid { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
 .risk-row {
-  display: flex; gap: 12px; align-items: flex-start;
-  padding: 11px 13px; background: var(--card);
-  border: 1px solid var(--border); border-radius: 4px;
+  display: flex; gap: 13px; align-items: flex-start;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 13px 15px;
 }
 .risk-tag {
-  font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600;
-  padding: 3px 8px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  padding: 4px 9px; border-radius: 7px; white-space: nowrap;
+  flex-shrink: 0; margin-top: 1px;
 }
-.risk-def { font-size: 13px; font-weight: 500; color: #eceef5; margin-bottom: 2px; }
+body[dir="rtl"] .risk-tag { font-family: var(--font-ar); }
+.risk-def { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
 .risk-ex { font-size: 12px; color: var(--muted); font-style: italic; }
+body[dir="rtl"] .risk-ex { font-style: normal; }
 
-/* EMV total bar */
+/* ─────────── EMV ─────────── */
 .emv-total {
-  background: var(--card2); border: 1px solid var(--border2);
-  border-top: none; padding: 9px 11px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;
+  background: var(--card); border: 1px solid var(--border2); border-top: none;
+  padding: 11px 13px; font-family: var(--font-mono); font-size: 13px;
   display: flex; justify-content: space-between; align-items: center;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 10px 10px;
 }
+.td-mono { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; direction: ltr; }
 
-/* Callout */
+/* ─────────── CALLOUT ─────────── */
 .callout {
-  border-left: 3px solid; padding: 10px 14px;
-  border-radius: 0 4px 4px 0; margin: 10px 0;
-  font-size: 13px; line-height: 1.6;
+  border-inline-start: 3px solid; padding: 12px 15px;
+  border-radius: 0 10px 10px 0; margin: 12px 0;
+  font-size: 13px; line-height: 1.65;
 }
-.c-green { border-color: var(--ch8); background: var(--ch8-dim); color: #7dd4ad; }
-.c-purple { border-color: var(--ch7); background: var(--ch7-dim); color: #b8a0f0; }
-.c-gold { border-color: var(--gold); background: var(--gold-dim); color: var(--gold); }
-.callout strong { color: #eceef5; }
+body[dir="rtl"] .callout { border-radius: 10px 0 0 10px; }
+.c-emerald { border-color: var(--emerald); background: var(--emerald-dim); color: #6ee7b7; }
+.c-violet { border-color: var(--violet); background: var(--violet-dim); color: #c4b5fd; }
+.c-amber { border-color: var(--amber); background: var(--amber-dim); color: var(--amber); }
+.callout strong { color: var(--text); }
 
-/* MCQ answer */
-.mcq-ans {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--ch8-dim); border: 1px solid rgba(77,184,138,0.3);
-  padding: 10px 18px; border-radius: 4px;
-  font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 300;
-  color: var(--ch8); margin-bottom: 12px;
-}
-
-/* ── CHEAT SHEET ── */
-.cheat-section { margin-bottom: 24px; }
-.cheat-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 8px; padding-bottom: 7px;
-  border-bottom: 1px solid var(--border);
-}
-.cheat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+/* ─────────── CHEAT SHEET ─────────── */
+.cheat-section { margin-bottom: 22px; }
+.cheat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
 .cheat-row {
-  display: flex; border: 1px solid var(--border);
-  border-radius: 3px; overflow: hidden; background: var(--card);
-  font-size: 12px;
+  display: flex; background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; font-size: 12px;
 }
-.cheat-q { padding: 7px 10px; flex: 1; color: var(--muted); line-height: 1.4; }
+.cheat-q { padding: 9px 12px; flex: 1; color: var(--text-dim); line-height: 1.45; }
 .cheat-a {
-  padding: 7px 10px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px; font-weight: 600;
-  border-left: 1px solid var(--border);
-  min-width: 120px; display: flex; align-items: center;
+  padding: 9px 12px; font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  border-inline-start: 1px solid var(--border);
+  min-width: 130px; display: flex; align-items: center;
 }
-.ca8 { background: var(--ch8-dim); color: var(--ch8); }
-.ca7 { background: var(--ch7-dim); color: var(--ch7); }
-.cax { background: var(--accent-dim); color: var(--accent); }
+body[dir="rtl"] .cheat-a { font-family: var(--font-ar); }
+.ca-em { background: var(--emerald-dim); color: var(--emerald); }
+.ca-vi { background: var(--violet-dim); color: var(--violet); }
+.ca-in { background: var(--indigo-dim); color: var(--indigo); }
 
-/* Animations */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(14px); }
-  to   { opacity:1; transform:translateY(0); }
+/* ─── CHEAT DASHBOARD (overhaul) ─── */
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 760px) { .dash-grid { grid-template-columns: 1fr; } }
+.dash-card {
+  background: var(--glass); backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border); border-radius: 16px;
+  padding: 18px; position: relative; overflow: hidden;
+  transition: border-color .25s, transform .25s;
+  animation: fadeUp .5s ease both;
 }
-.q-card { animation: fadeUp 0.35s ease both; }
-.q-card:nth-child(1){animation-delay:.05s}
-.q-card:nth-child(2){animation-delay:.10s}
-.q-card:nth-child(3){animation-delay:.15s}
-.q-card:nth-child(4){animation-delay:.20s}
-.q-card:nth-child(5){animation-delay:.25s}
-.q-card:nth-child(6){animation-delay:.30s}
-.q-card:nth-child(7){animation-delay:.35s}
+.dash-card:hover { transform: translateY(-3px); }
+.dash-card.d-em:hover { border-color: rgba(52,211,153,.35); }
+.dash-card.d-vi:hover { border-color: rgba(167,139,250,.35); }
+.dash-card.d-in:hover { border-color: rgba(124,123,245,.35); }
+.dash-card.d-am:hover { border-color: rgba(251,191,36,.35); }
+.dash-card::before {
+  content:''; position:absolute; top:0; inset-inline-start:0; width:100%; height:3px;
+}
+.d-em::before { background: linear-gradient(90deg,var(--emerald),transparent); }
+.d-vi::before { background: linear-gradient(90deg,var(--violet),transparent); }
+.d-in::before { background: linear-gradient(90deg,var(--indigo),transparent); }
+.d-am::before { background: linear-gradient(90deg,var(--amber),transparent); }
+.dash-head { display:flex; align-items:center; gap:11px; margin-bottom:14px; }
+.dash-ic {
+  width:38px; height:38px; border-radius:11px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:18px;
+  border:1px solid;
+}
+.di-em { background:var(--emerald-dim); border-color:rgba(52,211,153,.25); }
+.di-vi { background:var(--violet-dim); border-color:rgba(167,139,250,.25); }
+.di-in { background:var(--indigo-dim); border-color:rgba(124,123,245,.25); }
+.di-am { background:var(--amber-dim); border-color:rgba(251,191,36,.25); }
+.dash-titles { flex:1; min-width:0; }
+.dash-t { font-size:14.5px; font-weight:700; letter-spacing:-.01em; line-height:1.25; }
+body[dir="rtl"] .dash-t { letter-spacing:0; }
+.dash-sub { font-size:11px; color:var(--muted); margin-top:2px; }
+.dash-formula {
+  font-family:var(--font-mono); font-size:13.5px; font-weight:600;
+  background:var(--bg2); border:1px solid var(--border2); border-radius:10px;
+  padding:11px 14px; margin-bottom:12px; color:var(--text); direction:ltr;
+}
+body[dir="rtl"] .dash-formula { text-align:left; }
+.dash-formula b { color:inherit; }
+.df-em { border-inline-start:3px solid var(--emerald); }
+.df-vi { border-inline-start:3px solid var(--violet); }
+.df-in { border-inline-start:3px solid var(--indigo); }
 
+/* alert */
+.dash-alert {
+  border-radius:10px; padding:12px 14px; font-size:12.5px; line-height:1.6;
+  display:flex; gap:10px; align-items:flex-start; margin-top:4px;
+}
+.alert-rose { background:var(--rose-dim); border:1px solid rgba(251,113,133,.3); }
+.alert-ic { font-size:15px; flex-shrink:0; line-height:1.3; }
+.alert-body { flex:1; }
+.alert-tag {
+  display:inline-block; font-family:var(--font-mono); font-size:9.5px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--rose);
+  background:rgba(251,113,133,.12); padding:2px 8px; border-radius:6px; margin-bottom:6px;
+}
+body[dir="rtl"] .alert-tag { font-family:var(--font-ar); letter-spacing:0; text-transform:none; }
+.alert-txt { color:var(--text-dim); }
+.alert-txt strong { color:#fff; font-weight:600; }
+.zero-pop { color:var(--rose); font-weight:700; }
+.partial-pop { color:var(--amber); font-weight:700; }
+
+/* timeline */
+.flow { display:flex; flex-direction:column; gap:7px; margin-bottom:13px; }
+.flow-step { display:flex; align-items:center; gap:11px; position:relative; }
+.flow-n {
+  width:26px; height:26px; border-radius:8px; flex-shrink:0;
+  background:linear-gradient(135deg,var(--violet),var(--indigo)); color:#fff;
+  font-family:var(--font-mono); font-weight:600; font-size:12px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 8px rgba(167,139,250,.3);
+}
+.flow-label { font-size:13px; font-weight:600; color:var(--text); }
+.flow-en { font-size:10.5px; color:var(--muted); font-family:var(--font-mono); margin-inline-start:6px; }
+body[dir="rtl"] .flow-en { font-family:var(--font-en); direction:ltr; unicode-bidi:embed; }
+.hier-box {
+  background:var(--bg2); border:1px solid var(--border2); border-radius:10px;
+  padding:11px 13px; font-size:11.5px; line-height:1.7; color:var(--text-dim);
+}
+.hier-box b { color:var(--violet); }
+.hier-sep { color:var(--muted); margin:0 5px; }
+
+/* CMMI components */
+.comp-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.comp-chip {
+  font-size:11px; font-weight:600; padding:5px 11px; border-radius:8px;
+  background:var(--indigo-dim); color:var(--indigo); border:1px solid rgba(124,123,245,.2);
+}
+.comp-chip.star { background:var(--amber-dim); color:var(--amber); border-color:rgba(251,191,36,.3); }
+.ex-box {
+  background:var(--bg2); border:1px solid var(--border2); border-radius:10px;
+  padding:11px 13px; margin-bottom:11px; font-size:12px; line-height:1.65;
+}
+.ex-box .ex-lbl { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; font-family:var(--font-mono); }
+body[dir="rtl"] .ex-box .ex-lbl { font-family:var(--font-ar); letter-spacing:0; text-transform:none; }
+.ex-box b { color:var(--emerald); }
+.diff-row { display:flex; gap:8px; }
+.diff-card { flex:1; border-radius:10px; padding:10px 12px; font-size:11.5px; line-height:1.55; }
+.diff-2 { background:var(--amber-dim); border:1px solid rgba(251,191,36,.25); }
+.diff-3 { background:var(--sky-dim); border:1px solid rgba(56,189,248,.25); }
+.diff-lvl { font-weight:700; font-size:12px; margin-bottom:3px; }
+.diff-2 .diff-lvl { color:var(--amber); }
+.diff-3 .diff-lvl { color:var(--sky); }
+.diff-card .diff-txt { color:var(--text-dim); }
+
+/* 4 T's mini grid */
+.tmini { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:12px; }
+.tmini-card { border:1px solid var(--border); border-radius:9px; padding:9px 11px; background:var(--card); }
+.tmini-card.hl { border-color:rgba(167,139,250,.45); background:var(--violet-dim); }
+.tmini-name { font-size:12px; font-weight:700; color:var(--text); display:flex; align-items:center; gap:6px; }
+.tmini-purpose { font-size:10.5px; color:var(--muted); margin-top:3px; line-height:1.45; }
+.tmini-card.hl .tmini-purpose { color:var(--violet); }
+
+/* footer */
 .footer {
-  text-align:center; padding:2.5rem;
-  border-top:1px solid var(--border);
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10.5px; color:var(--muted); letter-spacing:0.06em;
+  text-align: center; padding: 3rem 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--muted); letter-spacing: 0.05em;
 }
+body[dir="rtl"] .footer { font-family: var(--font-ar); letter-spacing: 0; }
+
+/* responsive */
+@media (max-width: 640px) {
+  .dec-row, .ts-grid, .cheat-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero { padding-top: 3rem; }
+  .dtable { font-size: 12px; }
+  .dtable th, .dtable td { padding: 7px 8px; }
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 </style>
 </head>
-<body>
+<body dir="ltr">
 
-<div class="hero">
-  <div class="hero-tag">Final Exam Prep · Spring 2026</div>
-  <h1>Software Project<br><em>Management</em><br>Study Guide</h1>
-  <p class="hero-sub">All exam questions with answers from slides — Chapters 7 & 8 · 30 total marks</p>
-  <div class="hero-pills">
-    <span class="hero-pill pill-8">Ch.8 — CMMI & Expected Cost · 9 marks</span>
-    <span class="hero-pill pill-7">Ch.7 — Risk Management · 15 marks</span>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="brand-dot"></span><span data-i="brand">SPM Study Guide</span></div>
+    <nav class="nav-links">
+      <a class="nav-link" href="#quiz" data-i="nav_quiz">30 Questions</a>
+      <a class="nav-link" href="#ch8" data-i="nav_ch8">CMMI & Cost</a>
+      <a class="nav-link" href="#ch7" data-i="nav_ch7">Risk</a>
+      <a class="nav-link" href="#cheat" data-i="nav_cheat">Cheat Sheet</a>
+    </nav>
+    <div class="lang-toggle" id="langToggle" onclick="toggleLang()">
+      <span class="lang-slider en" id="langSlider"></span>
+      <span class="lang-opt active" id="optEn">EN</span>
+      <span class="lang-opt" id="optAr">ع</span>
+    </div>
   </div>
 </div>
 
-<nav class="sticky-nav">
-  <a class="nav-item n8" href="#mcq">MCQ</a>
-  <a class="nav-item n8" href="#ch8">Ch.8 — CMMI</a>
-  <a class="nav-item n7" href="#ch7">Ch.7 — Risk</a>
-  <a class="nav-item ns" href="#cheat">Cheat Sheet</a>
-</nav>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge mono-keep" data-i="hero_badge">◆ Final Exam Prep · Spring 2026</div>
+  <h1 data-i="hero_title">Software Project Management</h1>
+  <p class="hero-sub" data-i="hero_sub">Complete bilingual study guide — Chapters 5 to 8. 30 exam-probable questions, full answers, and case-study breakdowns.</p>
+  <div class="hero-stats">
+    <div class="stat-pill"><div class="stat-num">30</div><div class="stat-lbl" data-i="stat_q">Practice Questions</div></div>
+    <div class="stat-pill"><div class="stat-num">4</div><div class="stat-lbl" data-i="stat_ch">Chapters (5–8)</div></div>
+    <div class="stat-pill"><div class="stat-num">2</div><div class="stat-lbl" data-i="stat_lang">Languages</div></div>
+  </div>
+</header>
 
-<div class="main">
+<main class="main">
 
-  <!-- S1 MCQ -->
-  <div id="mcq" class="ch-header" style="margin-top:0;">
-    <div class="ch-num" style="color:var(--muted);font-size:1.4rem;">§1</div>
-    <div class="ch-label">
-      <h2>Multiple Choice & True/False</h2>
-      <p>Section 1 · 6 Marks</p>
+  <!-- ══════ SECTION 1: 30 QUESTIONS ══════ -->
+  <div id="quiz" class="section-head">
+    <div class="sh-icon shi-indigo">❓</div>
+    <div class="sh-text">
+      <h2 data-i="s1_title">High-Probability Exam Questions</h2>
+      <p data-i="s1_sub">Chapters 5, 6, 7 & 8 · 15 MCQ + 15 True/False</p>
     </div>
-    <span class="ch-marks">6 marks</span>
+    <span class="sh-marks" data-i="s1_marks">30 questions</span>
   </div>
 
-  <div class="q-card">
-    <div class="q-trigger" onclick="tog(this)">
-      <span class="q-badge b8">Q1 · MCQ</span>
-      <div class="q-text">
-        <div class="q-title">Which CMMI maturity level primarily focuses on project planning, requirements management, and configuration management?</div>
-        <div class="q-meta">Core concept — likely on exam</div>
-      </div>
-      <span class="q-marks">1 mark</span>
-      <span class="q-arrow">▼</span>
+  <div class="subsec" data-i="sub_mcq">Part A — Multiple Choice (15)</div>
+  <div id="mcqList"></div>
+
+  <div class="subsec" data-i="sub_tf">Part B — True / False (15)</div>
+  <div id="tfList"></div>
+
+  <!-- ══════ SECTION 2: CH8 ══════ -->
+  <div id="ch8" class="section-head">
+    <div class="sh-icon shi-emerald">📊</div>
+    <div class="sh-text">
+      <h2 data-i="ch8_title">Expected Cost & CMMI</h2>
+      <p data-i="ch8_sub">Chapter 8 · detailed answers</p>
     </div>
-    <div class="q-body">
-      <div class="mcq-ans">Answer: Level 2 — Managed</div>
-      <div class="ans-lead">From the slides: Level 2 introduces <strong>Requirements Management (REQM)</strong> — know what the customer asked for, <strong>Project Planning (PP)</strong> — estimate tasks, people, cost, and schedule, <strong>Project Monitoring & Control (PMC)</strong> — compare actual progress with the plan, and <strong>Configuration Management (CM)</strong> — control versions and changes.</div>
-      <div class="callout c-green">Slide note: "Result: each project can be managed, even if the whole organization does not yet use one standard process."</div>
+    <span class="sh-marks" data-i="ch8_marks">9 marks</span>
+  </div>
+  <div id="ch8List"></div>
+
+  <!-- ══════ SECTION 3: CH7 ══════ -->
+  <div id="ch7" class="section-head">
+    <div class="sh-icon shi-violet">⚠️</div>
+    <div class="sh-text">
+      <h2 data-i="ch7_title">Risk Management</h2>
+      <p data-i="ch7_sub">Chapter 7 · QuickBite case study</p>
+    </div>
+    <span class="sh-marks" data-i="ch7_marks">15 marks</span>
+  </div>
+  <div id="ch7List"></div>
+
+  <!-- ══════ CHEAT SHEET ══════ -->
+  <div id="cheat" class="section-head">
+    <div class="sh-icon shi-amber">⚡</div>
+    <div class="sh-text">
+      <h2 data-i="cheat_title">Quick Cheat Sheet</h2>
+      <p data-i="cheat_sub">Every key answer at a glance</p>
     </div>
   </div>
+  <div id="cheatList"></div>
 
-  <!-- S2 CH8 -->
-  <div id="ch8" class="ch-header">
-    <div class="ch-num" style="color:var(--ch8);">8</div>
-    <div class="ch-label">
-      <h2>Expected Cost & CMMI</h2>
-      <p>Chapter 8 · Section 2</p>
-    </div>
-    <span class="ch-marks">9 marks</span>
-  </div>
+</main>
 
-  <!-- Q2 -->
-  <div class="q-card">
-    <div class="q-trigger" onclick="tog(this)">
-      <span class="q-badge b8">Q2</span>
-      <div class="q-text">
-        <div class="q-title">Create a comprehensive table of the 5 CMMI Maturity Levels — definition, key steps, and advantages.</div>
-        <div class="q-meta">Long answer · memorize all 5 levels</div>
-      </div>
-      <span class="q-marks">4 marks</span>
-      <span class="q-arrow">▼</span>
-    </div>
-    <div class="q-body">
-      <table class="dtable">
-        <thead>
-          <tr><th>Level</th><th>Name</th><th>Definition (from slides)</th><th>Key Steps / Actions</th><th>Advantage</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="lvl l1">1</span></td>
-            <td class="td-k">Initial</td>
-            <td>Work is ad hoc and chaotic. Success depends on individual effort rather than a reliable process.</td>
-            <td>No written requirements, no plan. Testing happens late or only when bugs appear. Schedules depend on "who is available today."</td>
-            <td>Starting point — awareness that a process is needed.</td>
-          </tr>
-          <tr>
-            <td><span class="lvl l2">2</span></td>
-            <td class="td-k">Managed</td>
-            <td>The team plans, tracks, manages requirements, and controls changes at the project level.</td>
-            <td>REQM: know what the customer asked for. PP: estimate tasks/cost/schedule. PMC: compare actual vs plan. CM: control versions and changes.</td>
-            <td>Each project can be managed and tracked, even without an org-wide standard process.</td>
-          </tr>
-          <tr>
-            <td><span class="lvl l3">3</span></td>
-            <td class="td-k">Defined</td>
-            <td>Processes are documented, trained, and applied across the whole organization — not just per project.</td>
-            <td>Requirements Development, Technical Solution, Verification, Validation, Risk Management, Organizational Training — same for every team.</td>
-            <td>Consistency across all projects — easier to scale and onboard new teams.</td>
-          </tr>
-          <tr>
-            <td><span class="lvl l4">4</span></td>
-            <td class="td-k">Quantitatively Managed</td>
-            <td>The organization controls performance using measures and statistical thinking — results are predictable.</td>
-            <td>Track: defects per module, effort per feature, test pass rate, schedule variance and cycle time.</td>
-            <td>Data-driven decisions — cost and quality can be predicted accurately before release.</td>
-          </tr>
-          <tr>
-            <td><span class="lvl l5">5</span></td>
-            <td class="td-k">Optimizing</td>
-            <td>The organization uses evidence to prevent problems and innovate, not just react.</td>
-            <td>Find root cause → improve process (checklist/tool/training) → deploy innovation across teams → measure if quality/cost/speed improved → repeat.</td>
-            <td>Highest quality and efficiency — improvement becomes part of daily work.</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="callout c-gold" style="margin-top:10px;">
-        <strong>From slides (exam wording):</strong> "Best maturity result: Level 5. Best practical first goal: Level 3 — Defined." If asked where a low-maturity org should start → Level 2, then Level 3.
-      </div>
-    </div>
-  </div>
-
-  <!-- Q3 -->
-  <div class="q-card">
-    <div class="q-trigger" onclick="tog(this)">
-      <span class="q-badge b8">Q3</span>
-      <div class="q-text">
-        <div class="q-title">Using a decision tree (Build vs Reuse System X), explain how to calculate the Expected Cost and state your final decision.</div>
-        <div class="q-meta">3 mandatory steps · show all calculations</div>
-      </div>
-      <span class="q-marks">5 marks</span>
-      <span class="q-arrow">▼</span>
-    </div>
-    <div class="q-body">
-      <div class="formula">EC = <span>Σ (Probability × Cost)</span> &nbsp;— The lowest expected cost is the preferred economic decision.</div>
-      <div class="calc-steps">
-        <div class="calc-step">
-          <div class="calc-n">1</div>
-          <div class="calc-body">
-            <div class="calc-title">Expected Cost to Build</div>
-            <div class="calc-math">Build has two outcomes: $380k and $450k<br>(0.30 × 380,000) + (0.70 × 450,000)<br>= 114,000 + 315,000</div>
-            <div class="calc-res">Expected Cost to Build = $429,000</div>
-          </div>
-        </div>
-        <div class="calc-step">
-          <div class="calc-n">2</div>
-          <div class="calc-body">
-            <div class="calc-title">Expected Cost to Reuse</div>
-            <div class="calc-math">A) Minor changes branch: 0.40 × $275,000 = $110,000<br>B) Major changes inner: (0.20 × $310,000) + (0.80 × $490,000) = $62,000 + $392,000 = $454,000<br>B) Major branch: 0.60 × $454,000 = $272,400<br>Total = $110,000 + $272,400</div>
-            <div class="calc-res">Expected Cost to Reuse = $382,400</div>
-          </div>
-        </div>
-        <div class="calc-step">
-          <div class="calc-n">3</div>
-          <div class="calc-body">
-            <div class="calc-title">Compare and Choose</div>
-            <div class="dec-row">
-              <div class="dec-card">
-                <div class="dc-lbl">Build Path</div>
-                <div class="dc-val">$429,000</div>
-              </div>
-              <div class="dec-card win">
-                <div class="dc-lbl">Reuse Path ✓</div>
-                <div class="dc-val g">$382,400</div>
-                <div class="dc-save">Saves $46,600</div>
-              </div>
-            </div>
-            <div class="calc-math" style="margin-top:8px;">Choose Reuse — lower expected cost by $46,600. From slides: "This is an expected value decision: it does not guarantee the actual cost, but it supports a rational planning choice."</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- S3 CH7 -->
-  <div id="ch7" class="ch-header">
-    <div class="ch-num" style="color:var(--ch7);">7</div>
-    <div class="ch-label">
-      <h2>Risk Management</h2>
-      <p>Chapter 7 · Section 3</p>
-    </div>
-    <span class="ch-marks">15 marks</span>
-  </div>
-
-  <!-- Q4 -->
-  <div class="q-card">
-    <div class="q-trigger" onclick="tog(this)">
-      <span class="q-badge b7">Q4</span>
-      <div class="q-text">
-        <div class="q-title">Detail the 5 main steps in risk management activities. Explanation + QuickBite example for each.</div>
-        <div class="q-meta">From slides: Identifying → Determining → Evaluation → Planning → Documenting/Communicating</div>
-      </div>
-      <span class="q-marks">5 marks</span>
-      <span class="q-arrow">▼</span>
-    </div>
-    <div class="q-body">
-      <div class="steps-list">
-        <div class="step-item">
-          <div class="step-side"><div class="step-circle">1</div></div>
-          <div class="step-main">
-            <div class="step-name">Identifying Risk</div>
-            <div class="step-desc">Find all possible threats before they happen. "You cannot manage what you have not identified."</div>
-            <div class="step-eg">QB: App crashes during peak dinner hours (7–9 PM), running out of marketing budget before launch, competitor launching a 50% discount on launch day.</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-side"><div class="step-circle">2</div></div>
-          <div class="step-main">
-            <div class="step-name">Determining Probabilities (Analysis & Assessment)</div>
-            <div class="step-desc">Measure each risk: <strong>Risk Score = Probability × Severity</strong>. Goal: measuring the "size" of the threat to prioritize resources.</div>
-            <div class="step-eg">QB: App crash — Probability: High, Severity: High → Score 9/10 (Critical). Late deliveries — Probability: Medium, Severity: Medium → Score 5/10 (Moderate).</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-side"><div class="step-circle">3</div></div>
-          <div class="step-main">
-            <div class="step-name">Evaluation & Prioritization</div>
-            <div class="step-desc">Rank risks using a Risk Heat Map. "Focus your resources where the impact is greatest."</div>
-            <div class="step-eg">QB: Red Zone — app stability and payment security (must fix before launch). Yellow Zone — marketing costs and delivery speed. Green Zone — office supply shortages (accept and ignore).</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-side"><div class="step-circle">4</div></div>
-          <div class="step-main">
-            <div class="step-name">Planning Responses (Treatment & Mitigation — The 4 T's)</div>
-            <div class="step-desc">Choose a strategy for each risk: Terminate, Treat, Transfer, or Tolerate.</div>
-            <div class="step-eg">QB: Treat the app crash risk — hire extra servers and run stress tests to prevent crashes.</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-side"><div class="step-circle">5</div></div>
-          <div class="step-main">
-            <div class="step-name">Documenting & Communicating (Monitoring & Review)</div>
-            <div class="step-desc">"Risk management is a living document, not a one-time task." The market changes daily — continuously check for new and evolving threats.</div>
-            <div class="step-eg">QB: After 1 month, discovered "Driver Shortage" risk. Adjusted immediately — increased driver bonuses to ensure supply and maintain delivery speed.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q5 -->
-  <div class="q-card">
-    <div class="q-trigger" onclick="tog(this)">
-      <span class="q-badge b7">Q5</span>
-      <div class="q-text">
-        <div class="q-title">Identify the 4 primary risk response strategies (Terminate, Treat, Transfer, Tolerate). Explain the specific purpose of each.</div>
-        <div class="q-meta">The 4 T's — directly from slide 7</div>
-      </div>
-      <span class="q-marks">3 marks</span>
-      <span class="q-arrow">▼</span>
-    </div>
-    <div class="q-body">
-      <div class="ts-grid">
-        <div class="t-card">
-          <div class="t-name"><span class="t-icon">🚫</span>Terminate (Avoidance)</div>
-          <div class="t-desc">Stopping the activity entirely to eliminate the risk. Used when the risk is too high to manage.</div>
-          <div class="t-eg">QB: Deciding not to deliver in high-crime areas to protect driver safety.</div>
-        </div>
-        <div class="t-card">
-          <div class="t-name"><span class="t-icon">🔧</span>Treat (Reduction)</div>
-          <div class="t-desc">Taking action to lower the probability or impact of the risk to an acceptable level.</div>
-          <div class="t-eg">QB: Hiring extra servers and running stress tests to prevent app crashes.</div>
-        </div>
-        <div class="t-card">
-          <div class="t-name"><span class="t-icon">↗</span>Transfer (Sharing)</div>
-          <div class="t-desc">Shifting the financial or operational burden of the risk to a third party.</div>
-          <div class="t-eg">QB: Purchasing insurance for delivery riders to shift the liability.</div>
-        </div>
-        <div class="t-card">
-          <div class="t-name"><span class="t-icon">✓</span>Tolerate (Acceptance)</div>
-          <div class="t-desc">Acknowledging the risk and bearing the cost if it occurs. Usually for low-impact risks.</div>
-          <div class="t-eg">QB: Accepting that 1% of orders might be slightly late due to traffic.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q6 -->
-  <div class="q-card">
-    <div class="q-trigger" onclick="tog(this)">
-      <span class="q-badge b7">Q6</span>
-      <div class="q-text">
-        <div class="q-title">Differentiate between the types of project risks — Operational, Financial, Compliance, Reputational, and Cyber. One QuickBite example each.</div>
-        <div class="q-meta">From slides 9 & 14</div>
-      </div>
-      <span class="q-marks">3 marks</span>
-      <span class="q-arrow">▼</span>
-    </div>
-    <div class="q-body">
-      <div class="risk-grid">
-        <div class="risk-row">
-          <span class="risk-tag" style="background:var(--gold-dim);color:var(--gold);">Operational</span>
-          <div>
-            <div class="risk-def">Failed delivery logistics, GPS errors, or restaurant partner delays.</div>
-            <div class="risk-ex">QB: A GPS glitch sends drivers to wrong locations, causing massive delays.</div>
-          </div>
-        </div>
-        <div class="risk-row">
-          <span class="risk-tag" style="background:var(--accent-dim);color:var(--accent);">Financial</span>
-          <div>
-            <div class="risk-def">Budget overruns and lower-than-expected sales.</div>
-            <div class="risk-ex">QB: Running out of marketing budget before the launch date, preventing user acquisition.</div>
-          </div>
-        </div>
-        <div class="risk-row">
-          <span class="risk-tag" style="background:#0d2030;color:#6ab0e0;">Compliance</span>
-          <div>
-            <div class="risk-def">New labor laws regarding gig-economy workers or food safety regulations.</div>
-            <div class="risk-ex">QB: A new law requires all delivery riders to be classified as full-time employees.</div>
-          </div>
-        </div>
-        <div class="risk-row">
-          <span class="risk-tag" style="background:var(--ch7-dim);color:var(--ch7);">Reputational</span>
-          <div>
-            <div class="risk-def">Negative publicity from cold food, rude drivers, or social media scandals.</div>
-            <div class="risk-ex">QB: A viral video of a driver eating a customer's fries ruins the brand's trust.</div>
-          </div>
-        </div>
-        <div class="risk-row">
-          <span class="risk-tag" style="background:var(--ch8-dim);color:var(--ch8);">Cyber</span>
-          <div>
-            <div class="risk-def">Threats from data breaches, hacking, or IT system failures.</div>
-            <div class="risk-ex">QB: Hackers steal 10,000 customer credit card records from the app's database.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q7 -->
-  <div class="q-card">
-    <div class="q-trigger" onclick="tog(this)">
-      <span class="q-badge b7">Q7</span>
-      <div class="q-text">
-        <div class="q-title">Explain how to calculate Expected Monetary Value (EMV). Formula + table with Risk, Probability, Impact, and EMV columns.</div>
-        <div class="q-meta">From slides 10–13 — QuickBite EMV example</div>
-      </div>
-      <span class="q-marks">4 marks</span>
-      <span class="q-arrow">▼</span>
-    </div>
-    <div class="q-body">
-      <div class="formula">EMV = <span>Probability × Impact</span> &nbsp;|&nbsp; Total Project EMV = <span>Σ all EMVs</span></div>
-      <div class="ans-lead">Negative impact = risk/threat (loss). Positive impact = opportunity (gain). The total tells you the risk reserve needed.</div>
-      <table class="dtable" style="border-radius:4px 4px 0 0;">
-        <thead>
-          <tr><th>Risk</th><th>Probability</th><th>Impact ($)</th><th>EMV ($)</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>App crash</td>
-            <td class="td-mono" style="color:var(--muted);">30% (0.30)</td>
-            <td class="td-mono" style="color:var(--accent);">−200,000</td>
-            <td class="td-mono" style="color:var(--accent);">−60,000</td>
-          </tr>
-          <tr>
-            <td>Late deliveries</td>
-            <td class="td-mono" style="color:var(--muted);">40% (0.40)</td>
-            <td class="td-mono" style="color:var(--accent);">−50,000</td>
-            <td class="td-mono" style="color:var(--accent);">−20,000</td>
-          </tr>
-          <tr>
-            <td>Marketing success</td>
-            <td class="td-mono" style="color:var(--muted);">25% (0.25)</td>
-            <td class="td-mono" style="color:var(--ch8);">+120,000</td>
-            <td class="td-mono" style="color:var(--ch8);">+30,000</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="emv-total">
-        <span style="color:var(--muted);">Total Project EMV</span>
-        <span style="color:var(--accent);font-weight:600;">−$50,000</span>
-      </div>
-      <div class="callout c-purple" style="margin-top:10px;">
-        <strong>Interpretation:</strong> QuickBite needs a risk reserve of at least <strong>$50,000</strong>. The negative total means threats currently outweigh identified opportunities.
-      </div>
-    </div>
-  </div>
-
-  <!-- CHEAT SHEET -->
-  <div id="cheat" class="ch-header" style="margin-top:4.5rem;">
-    <div class="ch-num" style="color:var(--accent);font-size:1.4rem;">★</div>
-    <div class="ch-label">
-      <h2>Quick Cheat Sheet</h2>
-      <p>All key answers at a glance — from the slides</p>
-    </div>
-  </div>
-
-  <div class="cheat-section">
-    <div class="cheat-label">Chapter 8 — CMMI & Expected Cost</div>
-    <div class="cheat-grid">
-      <div class="cheat-row"><span class="cheat-q">Which level: planning, requirements, config mgmt?</span><span class="cheat-a ca8">Level 2 — Managed</span></div>
-      <div class="cheat-row"><span class="cheat-q">EC formula</span><span class="cheat-a ca8">Σ (P × Cost)</span></div>
-      <div class="cheat-row"><span class="cheat-q">Ad hoc, hero-based, chaotic</span><span class="cheat-a ca8">Level 1 — Initial</span></div>
-      <div class="cheat-row"><span class="cheat-q">Org-wide standard process</span><span class="cheat-a ca8">Level 3 — Defined</span></div>
-      <div class="cheat-row"><span class="cheat-q">Measured & statistically predictable</span><span class="cheat-a ca8">Level 4 — Quantitative</span></div>
-      <div class="cheat-row"><span class="cheat-q">Root cause analysis + continuous improvement</span><span class="cheat-a ca8">Level 5 — Optimizing</span></div>
-      <div class="cheat-row"><span class="cheat-q">Best maturity result</span><span class="cheat-a ca8">Level 5</span></div>
-      <div class="cheat-row"><span class="cheat-q">Best practical first goal</span><span class="cheat-a ca8">Level 3</span></div>
-      <div class="cheat-row"><span class="cheat-q">Decision rule for expected cost</span><span class="cheat-a ca8">Lowest EC wins</span></div>
-      <div class="cheat-row"><span class="cheat-q">Build EC</span><span class="cheat-a ca8">$429,000</span></div>
-      <div class="cheat-row"><span class="cheat-q">Reuse EC</span><span class="cheat-a ca8">$382,400 ✓</span></div>
-      <div class="cheat-row"><span class="cheat-q">Savings from Reuse</span><span class="cheat-a ca8">$46,600</span></div>
-    </div>
-  </div>
-
-  <div class="cheat-section">
-    <div class="cheat-label">Chapter 7 — Risk Management Steps</div>
-    <div class="cheat-grid">
-      <div class="cheat-row"><span class="cheat-q">Step 1</span><span class="cheat-a ca7">Identifying Risk</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 2</span><span class="cheat-a ca7">Determining Probabilities (P × Severity)</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 3</span><span class="cheat-a ca7">Evaluation / Heat Map</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 4</span><span class="cheat-a ca7">Planning Responses (4 T's)</span></div>
-      <div class="cheat-row"><span class="cheat-q">Step 5</span><span class="cheat-a ca7">Documenting & Communicating</span></div>
-      <div class="cheat-row"><span class="cheat-q">EMV formula</span><span class="cheat-a ca7">P × Impact</span></div>
-    </div>
-  </div>
-
-  <div class="cheat-section">
-    <div class="cheat-label">Chapter 7 — The 4 T's</div>
-    <div class="cheat-grid">
-      <div class="cheat-row"><span class="cheat-q">Stop the activity entirely</span><span class="cheat-a ca7">Terminate</span></div>
-      <div class="cheat-row"><span class="cheat-q">Lower probability or impact</span><span class="cheat-a ca7">Treat</span></div>
-      <div class="cheat-row"><span class="cheat-q">Move burden to a third party</span><span class="cheat-a ca7">Transfer</span></div>
-      <div class="cheat-row"><span class="cheat-q">Accept low-impact risk</span><span class="cheat-a ca7">Tolerate</span></div>
-    </div>
-  </div>
-
-  <div class="cheat-section">
-    <div class="cheat-label">Chapter 7 — Risk Types</div>
-    <div class="cheat-grid">
-      <div class="cheat-row"><span class="cheat-q">GPS errors, logistics failures</span><span class="cheat-a ca7">Operational</span></div>
-      <div class="cheat-row"><span class="cheat-q">Budget overruns, low sales</span><span class="cheat-a ca7">Financial</span></div>
-      <div class="cheat-row"><span class="cheat-q">Labor laws, food regulations</span><span class="cheat-a ca7">Compliance</span></div>
-      <div class="cheat-row"><span class="cheat-q">Viral scandals, bad reviews</span><span class="cheat-a ca7">Reputational</span></div>
-      <div class="cheat-row"><span class="cheat-q">Hacking, data breaches</span><span class="cheat-a ca7">Cyber</span></div>
-      <div class="cheat-row"><span class="cheat-q">EMV total < 0 means</span><span class="cheat-a cax">Need risk reserve</span></div>
-    </div>
-  </div>
-
-</div>
-
-<div class="footer">Software Project Management · Spring 2026 · Good luck 🎯</div>
+<div class="footer mono-keep" data-i="footer">Software Project Management · Spring 2026 · Good luck 🎯</div>
 
 <script>
-function tog(trigger) {
-  const body = trigger.nextElementSibling;
-  const arrow = trigger.querySelector('.q-arrow');
-  const open = body.classList.contains('open');
-  body.classList.toggle('open', !open);
-  arrow.classList.toggle('open', !open);
+/* ════════════════════════════════════════════
+   LOCALIZATION DICTIONARY
+════════════════════════════════════════════ */
+const UI = {
+  en: {
+    brand: "SPM Study Guide",
+    nav_quiz: "30 Questions", nav_ch8: "CMMI & Cost", nav_ch7: "Risk", nav_cheat: "Cheat Sheet",
+    hero_badge: "◆ Final Exam Prep · Spring 2026",
+    hero_title: "Software Project Management",
+    hero_sub: "Complete bilingual study guide — Chapters 5 to 8. 30 exam-probable questions, full answers, and case-study breakdowns.",
+    stat_q: "Practice Questions", stat_ch: "Chapters (5–8)", stat_lang: "Languages",
+    s1_title: "High-Probability Exam Questions", s1_sub: "Chapters 5, 6, 7 & 8 · 15 MCQ + 15 True/False", s1_marks: "30 questions",
+    sub_mcq: "Part A — Multiple Choice (15)", sub_tf: "Part B — True / False (15)",
+    ch8_title: "Expected Cost & CMMI", ch8_sub: "Chapter 8 · detailed answers", ch8_marks: "9 marks",
+    ch7_title: "Risk Management", ch7_sub: "Chapter 7 · QuickBite case study", ch7_marks: "15 marks",
+    cheat_title: "Quick Cheat Sheet", cheat_sub: "Every key answer at a glance",
+    footer: "Software Project Management · Spring 2026 · Good luck 🎯",
+    answer: "Answer", correct_ans: "Correct answer", explanation: "Explanation",
+    tf_true: "TRUE", tf_false: "FALSE"
+  },
+  ar: {
+    brand: "دليل مذاكرة SPM",
+    nav_quiz: "٣٠ سؤال", nav_ch8: "CMMI والتكلفة", nav_ch7: "المخاطر", nav_cheat: "ملخص سريع",
+    hero_badge: "◆ تحضير الاختبار النهائي · ربيع ٢٠٢٦",
+    hero_title: "إدارة مشاريع البرمجيات",
+    hero_sub: "دليل مذاكرة كامل ثنائي اللغة — الفصول من ٥ إلى ٨. ٣٠ سؤالاً متوقعاً في الاختبار، مع إجابات كاملة وشرح لدراسات الحالة.",
+    stat_q: "أسئلة تدريبية", stat_ch: "فصول (٥–٨)", stat_lang: "لغتان",
+    s1_title: "أسئلة الاختبار الأكثر احتمالاً", s1_sub: "الفصول ٥ و٦ و٧ و٨ · ١٥ اختيار من متعدد + ١٥ صح/خطأ", s1_marks: "٣٠ سؤال",
+    sub_mcq: "القسم أ — اختيار من متعدد (١٥)", sub_tf: "القسم ب — صح / خطأ (١٥)",
+    ch8_title: "التكلفة المتوقعة وCMMI", ch8_sub: "الفصل ٨ · إجابات مفصلة", ch8_marks: "٩ درجات",
+    ch7_title: "إدارة المخاطر", ch7_sub: "الفصل ٧ · دراسة حالة QuickBite", ch7_marks: "١٥ درجة",
+    cheat_title: "ملخص سريع", cheat_sub: "كل إجابة رئيسية في لمحة",
+    footer: "إدارة مشاريع البرمجيات · ربيع ٢٠٢٦ · بالتوفيق 🎯",
+    answer: "الإجابة", correct_ans: "الإجابة الصحيحة", explanation: "الشرح",
+    tf_true: "صحيحة", tf_false: "خاطئة"
+  }
+};
+/* ════════════════════════════════════════════
+   30 QUESTIONS — bilingual
+════════════════════════════════════════════ */
+const MCQ = [
+  { ch:"5",
+    en:{q:"COCOMO I classifies software development modes into which three categories?", a:"Organic, Semi-detached, Embedded",
+        ex:"COCOMO I defines three project modes based on size and complexity: <strong>Organic</strong> (small, familiar teams — lowest coefficients a=2.4, b=1.05), <strong>Semi-detached</strong> (medium), and <strong>Embedded</strong> (large, tightly-constrained, highest effort). The mode sets the constants used in Effort = a × (KLOC)^b."},
+    ar:{q:"يصنّف COCOMO I أنماط تطوير البرمجيات إلى أي ثلاث فئات؟", a:"العضوي (Organic)، شبه المنفصل (Semi-detached)، المُضمَّن (Embedded)",
+        ex:"يعرّف COCOMO I ثلاثة أنماط للمشاريع حسب الحجم والتعقيد: <strong>العضوي</strong> (فرق صغيرة وذات خبرة — أقل المعاملات a=2.4، b=1.05)، و<strong>شبه المنفصل</strong> (متوسط)، و<strong>المُضمَّن</strong> (كبير ومقيّد بشدة وأعلى جهد). يحدد النمط الثوابت المستخدمة في معادلة الجهد = a × (KLOC)^b."}},
+  { ch:"5",
+    en:{q:"In COCOMO II, Scale Factors (such as PREC, FLEX, TEAM) directly affect which mathematical component?", a:"Exponent B (Diseconomy of Scale)",
+        ex:"Scale Factors are summed and plugged into <strong>B = 1.01 + 0.01 × ΣSF</strong>. Because B is the exponent in PM = A × (Size)^B × M, increasing the scale factors raises B above 1, producing a diseconomy of scale — effort grows faster than size."},
+    ar:{q:"في COCOMO II، تؤثر عوامل المقياس (Scale Factors) مثل PREC وFLEX وTEAM مباشرة على أي مكوّن رياضي؟", a:"الأُس B (انعدام وفورات الحجم)",
+        ex:"تُجمع عوامل المقياس وتُدخل في المعادلة <strong>B = 1.01 + 0.01 × مجموع SF</strong>. وبما أن B هو الأُس في PM = A × (Size)^B × M، فإن زيادة عوامل المقياس ترفع B فوق ١، مما يُنتج انعدام وفورات الحجم — أي أن الجهد ينمو أسرع من حجم المشروع."}},
+  { ch:"5",
+    en:{q:"Which COCOMO II stage is specifically designed for early prototyping and applications built using GUI/4GL builders?", a:"Application Composition Stage",
+        ex:"COCOMO II has three stages: <strong>Application Composition</strong> (early prototyping, GUI/4GL builders, object points), <strong>Early Design</strong> (uses 7 high-level cost drivers), and <strong>Post-Architecture</strong> (uses 17 detailed drivers). The first stage handles rapid prototype-style development."},
+    ar:{q:"أي مرحلة في COCOMO II مُصممة خصيصاً للنماذج الأولية المبكرة والتطبيقات المبنية باستخدام أدوات GUI/4GL؟", a:"مرحلة تركيب التطبيق (Application Composition)",
+        ex:"يضم COCOMO II ثلاث مراحل: <strong>تركيب التطبيق</strong> (النماذج الأولية المبكرة، أدوات GUI/4GL، نقاط الكائنات)، و<strong>التصميم المبكر</strong> (يستخدم ٧ عوامل تكلفة عالية المستوى)، و<strong>ما بعد البنية</strong> (يستخدم ١٧ عاملاً مفصلاً). المرحلة الأولى تتعامل مع التطوير السريع بأسلوب النماذج الأولية."}},
+  { ch:"6",
+    en:{q:"According to the Precedence Rule in Project Scheduling, the Earliest Start (ES) of an activity with multiple predecessors is determined by:", a:"The highest Earliest Finish (EF) among all preceding activities",
+        ex:"During the <strong>forward pass</strong>, when an activity depends on several predecessors, it cannot start until the slowest one finishes. So ES = the MAXIMUM (highest) EF of all predecessors. Then EF = ES + t."},
+    ar:{q:"وفقاً لقاعدة الأسبقية في جدولة المشاريع، يتم تحديد البداية المبكرة (ES) لنشاط له عدة أنشطة سابقة بواسطة:", a:"أعلى نهاية مبكرة (EF) بين جميع الأنشطة السابقة",
+        ex:"أثناء <strong>المرور الأمامي</strong>، عندما يعتمد نشاط على عدة أنشطة سابقة، لا يمكنه البدء حتى ينتهي أبطأها. لذا فإن ES = أعلى (أقصى) قيمة EF بين جميع الأنشطة السابقة. ثم EF = ES + t."}},
+  { ch:"6",
+    en:{q:"In Critical Path Analysis, what is the core formula used during the backward pass to calculate the Latest Start (LS)?", a:"LS = LF − t",
+        ex:"The <strong>backward pass</strong> starts from the project completion time and works backward. For each activity, the Latest Start equals its Latest Finish minus its duration: <strong>LS = LF − t</strong>."},
+    ar:{q:"في تحليل المسار الحرج، ما هي المعادلة الأساسية المستخدمة أثناء المرور الخلفي لحساب البداية المتأخرة (LS)؟", a:"LS = LF − t",
+        ex:"يبدأ <strong>المرور الخلفي</strong> من وقت إنجاز المشروع ويعمل بشكل عكسي. لكل نشاط، تساوي البداية المتأخرة نهايته المتأخرة ناقص مدته: <strong>LS = LF − t</strong>."}},
+  { ch:"6",
+    en:{q:"Activities that lie directly on the Critical Path must have a Slack (Float) value of:", a:"Zero (0)",
+        ex:"Critical activities have <strong>zero slack</strong> — any delay in them delays the entire project. Slack = LS − ES = LF − EF = 0 on the critical path (e.g. B→D→E→F in the lecture example)."},
+    ar:{q:"الأنشطة الواقعة مباشرة على المسار الحرج يجب أن تكون قيمة الفائض (Slack/Float) لديها:", a:"صفر (0)",
+        ex:"الأنشطة الحرجة لها <strong>فائض صفري</strong> — أي تأخير فيها يؤخّر المشروع بأكمله. الفائض = LS − ES = LF − EF = صفر على المسار الحرج (مثل B→D→E→F في مثال المحاضرة)."}},
+  { ch:"7",
+    en:{q:"What is the correct formula to calculate Expected Monetary Value (EMV) for a single project risk?", a:"EMV = Probability × Impact",
+        ex:"EMV weights a risk's monetary impact by its likelihood: <strong>EMV = Probability × Impact</strong>. Threats use a negative impact (loss); opportunities use a positive impact (gain). The total project EMV is the sum of all individual EMVs."},
+    ar:{q:"ما هي المعادلة الصحيحة لحساب القيمة النقدية المتوقعة (EMV) لخطر مشروع واحد؟", a:"EMV = الاحتمالية × الأثر",
+        ex:"تُرجّح القيمة النقدية المتوقعة أثرَ الخطر المالي حسب احتماليته: <strong>EMV = الاحتمالية × الأثر</strong>. التهديدات تستخدم أثراً سالباً (خسارة)، والفرص تستخدم أثراً موجباً (مكسب). والقيمة الإجمالية للمشروع هي مجموع كل قيم EMV الفردية."}},
+  { ch:"7",
+    en:{q:"Shifting the financial liability or operational burden of a risk to a third party (like buying insurance) is known as:", a:"Transfer (Sharing)",
+        ex:"<strong>Transfer</strong> is one of the 4 T's. It moves the burden of a risk to another party without eliminating the risk itself — e.g. QuickBite buying insurance for delivery riders to shift accident liability to the insurer."},
+    ar:{q:"تحويل المسؤولية المالية أو العبء التشغيلي لخطر ما إلى طرف ثالث (مثل شراء التأمين) يُعرف بـ:", a:"التحويل (Transfer / المشاركة)",
+        ex:"<strong>التحويل</strong> هو أحد استراتيجيات الـ4 T's. ينقل عبء الخطر إلى طرف آخر دون إزالة الخطر نفسه — مثل قيام QuickBite بشراء تأمين للسائقين لتحويل مسؤولية الحوادث إلى شركة التأمين."}},
+  { ch:"7",
+    en:{q:"In the QuickBite case study, a server crash during peak dinner hours is classified as what type of risk?", a:"Operational Risk",
+        ex:"An app/server crash is an <strong>Operational Risk</strong> — a failure in internal systems, processes, or technology. In QuickBite, the app crashing during the 7–9 PM dinner rush from server overload is the classic operational example."},
+    ar:{q:"في دراسة حالة QuickBite، يُصنَّف تعطّل الخادم خلال ساعات ذروة العشاء كأي نوع من المخاطر؟", a:"مخاطر تشغيلية (Operational Risk)",
+        ex:"تعطّل التطبيق/الخادم هو <strong>خطر تشغيلي</strong> — فشل في الأنظمة الداخلية أو العمليات أو التقنية. في QuickBite، تعطّل التطبيق خلال ذروة العشاء (٧–٩ مساءً) بسبب الحمل الزائد على الخادم هو المثال التشغيلي الكلاسيكي."}},
+  { ch:"8",
+    en:{q:"Which CMMI Maturity Level focuses on establishing standard, documented, and trained processes across the entire organization?", a:"Level 3 — Defined",
+        ex:"<strong>Level 3 (Defined)</strong> moves from project-level habits to organization-wide standards: one documented process, used and trained across every team, and tailorable per project. (Level 2 only manages each project individually.)"},
+    ar:{q:"أي مستوى نضج في CMMI يركّز على إنشاء عمليات قياسية وموثّقة ومُدرَّب عليها عبر المنظمة بأكملها؟", a:"المستوى ٣ — المُعرَّف (Defined)",
+        ex:"ينتقل <strong>المستوى ٣ (المُعرَّف)</strong> من العادات على مستوى المشروع إلى المعايير على مستوى المنظمة: عملية واحدة موثّقة، يُدرَّب عليها وتُستخدم في كل فريق، وقابلة للتكييف لكل مشروع. (أما المستوى ٢ فيدير كل مشروع على حدة فقط.)"}},
+  { ch:"8",
+    en:{q:"Causal Analysis and Resolution (CAR) is a core Process Area belonging to which CMMI Maturity Level?", a:"Level 5 — Optimizing",
+        ex:"<strong>CAR</strong> (finding root causes of defects and applying preventive actions) sits at <strong>Level 5 — Optimizing</strong>, alongside OPM. This is the level of continuous improvement and defect prevention."},
+    ar:{q:"تحليل الأسباب الجذرية وحلّها (CAR) هو منطقة عملية أساسية تنتمي إلى أي مستوى نضج في CMMI؟", a:"المستوى ٥ — التحسين (Optimizing)",
+        ex:"يقع <strong>CAR</strong> (إيجاد الأسباب الجذرية للعيوب وتطبيق إجراءات وقائية) في <strong>المستوى ٥ — التحسين</strong>، إلى جانب OPM. وهو مستوى التحسين المستمر ومنع العيوب."}},
+  { ch:"8",
+    en:{q:"In CMMI, the Staged Representation is used to evaluate and provide a single rating for:", a:"Organizational Maturity",
+        ex:"The <strong>Staged representation</strong> gives one overall maturity rating (Level 1–5) for the whole organization. The <strong>Continuous representation</strong> instead measures capability per individual process area. Memory aid: Maturity = whole organization, Capability = one process area."},
+    ar:{q:"في CMMI، يُستخدم التمثيل المرحلي (Staged Representation) لتقييم وإعطاء تقييم واحد لـ:", a:"نضج المنظمة (Organizational Maturity)",
+        ex:"يعطي <strong>التمثيل المرحلي</strong> تقييم نضج واحداً شاملاً (مستوى ١–٥) للمنظمة بأكملها. أما <strong>التمثيل المستمر</strong> فيقيس القدرة لكل منطقة عملية على حدة. وسيلة الحفظ: النضج = المنظمة كاملة، القدرة = منطقة عملية واحدة."}},
+  { ch:"8",
+    en:{q:"In Expected Cost Decision Tree Analysis, what is the rational economic rule used to choose between building or reusing a system?", a:"Select the alternative with the Lowest Expected Cost",
+        ex:"After computing EC = Σ(Probability × Cost) for each branch, the <strong>rational choice is the option with the lowest expected cost</strong>. In the System X example, Reuse ($382,400) beats Build ($429,000), saving $46,600."},
+    ar:{q:"في تحليل شجرة القرار للتكلفة المتوقعة، ما القاعدة الاقتصادية الرشيدة المستخدمة للاختيار بين بناء النظام أو إعادة استخدامه؟", a:"اختيار البديل ذي التكلفة المتوقعة الأقل",
+        ex:"بعد حساب EC = مجموع (الاحتمالية × التكلفة) لكل فرع، فإن <strong>الاختيار الرشيد هو الخيار ذو التكلفة المتوقعة الأقل</strong>. في مثال النظام X، تتفوق إعادة الاستخدام (٣٨٢,٤٠٠$) على البناء (٤٢٩,٠٠٠$)، موفّرةً ٤٦,٦٠٠$."}},
+  { ch:"6",
+    en:{q:"In Project Scheduling, what does \"Slack\" or \"Float\" represent?", a:"The time an activity can be delayed without affecting the project completion date",
+        ex:"<strong>Slack (Float)</strong> = how long a non-critical activity can slip before it pushes the project finish date. Computed as Slack = LS − ES (or LF − EF). Critical activities have zero slack."},
+    ar:{q:"في جدولة المشاريع، ماذا يمثّل \"الفائض\" (Slack/Float)؟", a:"المدة التي يمكن تأخير النشاط خلالها دون التأثير على تاريخ إنجاز المشروع",
+        ex:"<strong>الفائض (Float)</strong> = المدة التي يمكن أن يتأخر فيها نشاط غير حرج قبل أن يدفع تاريخ انتهاء المشروع. يُحسب بـ الفائض = LS − ES (أو LF − EF). الأنشطة الحرجة فائضها صفر."}},
+  { ch:"5",
+    en:{q:"In COCOMO I Intermediate model, the product of the 15 cost drivers is called the:", a:"Effort Adjustment Factor (EAF)",
+        ex:"The Intermediate COCOMO I multiplies 15 cost-driver ratings together to get the <strong>Effort Adjustment Factor (EAF)</strong>, which then scales the nominal effort: Effort = a × (KLOC)^b × EAF."},
+    ar:{q:"في النموذج المتوسط لـ COCOMO I، يُسمّى حاصل ضرب الـ15 عامل تكلفة بـ:", a:"عامل تعديل الجهد (EAF)",
+        ex:"يضرب نموذج COCOMO I المتوسط تقييمات الـ١٥ عامل تكلفة معاً للحصول على <strong>عامل تعديل الجهد (EAF)</strong>، الذي يُقيّس الجهد الاسمي: الجهد = a × (KLOC)^b × EAF."}}
+];
+
+const TF = [
+  { ch:"5", val:false,
+    en:{q:"In COCOMO I, the Embedded mode has the lowest base effort multiplier coefficient.", ex:"<strong>False.</strong> The Organic mode has the lowest coefficient (a = 2.4). Embedded is the highest because it represents large, tightly-constrained, complex systems requiring the most effort."},
+    ar:{q:"في COCOMO I، النمط المُضمَّن (Embedded) لديه أقل معامل أساسي لمضاعف الجهد.", ex:"<strong>خطأ.</strong> النمط العضوي (Organic) لديه أقل معامل (a = ٢.٤). النمط المُضمَّن هو الأعلى لأنه يمثّل أنظمة كبيرة ومعقّدة ومقيّدة بشدة تتطلب أكبر جهد."}},
+  { ch:"5", val:false,
+    en:{q:"Adding more developers to a highly complex software project always reduces its duration linearly.", ex:"<strong>False.</strong> This violates Brooks' Law — communication overhead grows with team size, so adding people to a late/complex project can slow it down rather than help linearly."},
+    ar:{q:"إضافة مزيد من المطوّرين إلى مشروع برمجي معقّد جداً تقلّل دائماً مدته بشكل خطّي.", ex:"<strong>خطأ.</strong> هذا يخالف قانون بروكس (Brooks' Law) — يزداد عبء التواصل مع حجم الفريق، لذا فإن إضافة أشخاص إلى مشروع متأخر/معقّد قد تُبطئه بدلاً من المساعدة بشكل خطّي."}},
+  { ch:"5", val:false,
+    en:{q:"The Early Design stage of COCOMO II requires a detailed analysis of all 17 post-architecture cost drivers.", ex:"<strong>False.</strong> The Early Design stage uses only 7 high-level cost drivers. The full set of 17 detailed drivers belongs to the Post-Architecture stage."},
+    ar:{q:"تتطلّب مرحلة التصميم المبكر في COCOMO II تحليلاً مفصلاً لجميع عوامل التكلفة الـ17 لما بعد البنية.", ex:"<strong>خطأ.</strong> تستخدم مرحلة التصميم المبكر ٧ عوامل تكلفة عالية المستوى فقط. أما المجموعة الكاملة المكوّنة من ١٧ عاملاً مفصلاً فتخص مرحلة ما بعد البنية."}},
+  { ch:"6", val:false,
+    en:{q:"The Critical Path is defined as the shortest sequence of dependent activities in a project network diagram.", ex:"<strong>False.</strong> The Critical Path is the <em>longest</em> sequence of dependent activities — it determines the minimum time to finish the whole project. Its activities have zero slack."},
+    ar:{q:"يُعرَّف المسار الحرج بأنه أقصر سلسلة من الأنشطة المترابطة في مخطط شبكة المشروع.", ex:"<strong>خطأ.</strong> المسار الحرج هو <em>أطول</em> سلسلة من الأنشطة المترابطة — وهو يحدد الحد الأدنى من الوقت لإنهاء المشروع بالكامل. وأنشطته فائضها صفر."}},
+  { ch:"6", val:true,
+    en:{q:"During a backward pass, if an activity has multiple successors, its Latest Finish (LF) is determined by taking the MINIMUM Latest Start (LS) among those successors.", ex:"<strong>True.</strong> This is the Convergence Rule. When an activity feeds several successors, its LF must respect the earliest of them, so LF = minimum LS among all successors."},
+    ar:{q:"أثناء المرور الخلفي، إذا كان للنشاط عدة أنشطة لاحقة، تُحدَّد نهايته المتأخرة (LF) بأخذ أصغر (minimum) بداية متأخرة (LS) بين تلك الأنشطة اللاحقة.", ex:"<strong>صح.</strong> هذه هي قاعدة التقارب (Convergence Rule). عندما يغذّي النشاط عدة أنشطة لاحقة، يجب أن تحترم نهايته المتأخرة أبكرها، فتكون LF = أصغر قيمة LS بين جميع الأنشطة اللاحقة."}},
+  { ch:"6", val:true,
+    en:{q:"Slack can be accurately computed using either the formula (LS − ES) or the formula (LF − EF).", ex:"<strong>True.</strong> Both formulas give the same slack value: Slack = LS − ES = LF − EF. Both measure the available delay for an activity."},
+    ar:{q:"يمكن حساب الفائض بدقة باستخدام المعادلة (LS − ES) أو المعادلة (LF − EF).", ex:"<strong>صح.</strong> كلتا المعادلتين تعطيان نفس قيمة الفائض: الفائض = LS − ES = LF − EF. وكلاهما يقيس التأخير المتاح للنشاط."}},
+  { ch:"7", val:false,
+    en:{q:"For negative risks (threats), the Expected Monetary Value (EMV) is typically expressed as a positive number in risk registers.", ex:"<strong>False.</strong> Threats produce a loss, so their EMV is written as a negative number (e.g. an app crash → −$60,000). Only opportunities give a positive EMV."},
+    ar:{q:"بالنسبة للمخاطر السلبية (التهديدات)، تُعبَّر القيمة النقدية المتوقعة (EMV) عادةً كرقم موجب في سجلات المخاطر.", ex:"<strong>خطأ.</strong> التهديدات تنتج خسارة، لذا تُكتب قيمتها المتوقعة كرقم سالب (مثلاً تعطّل التطبيق ← −٦٠,٠٠٠$). الفرص فقط هي التي تعطي EMV موجبة."}},
+  { ch:"7", val:true,
+    en:{q:"Acknowledging a low-impact risk and absorbing its financial cost if it occurs is an application of the \"Tolerate\" risk strategy.", ex:"<strong>True.</strong> Tolerate (Acceptance) means knowingly accepting a low-impact risk and bearing its cost if it happens — e.g. QuickBite accepting that 1% of orders may be slightly late."},
+    ar:{q:"الإقرار بخطر منخفض الأثر وتحمّل تكلفته المالية إن وقع هو تطبيق لاستراتيجية \"التحمّل\" (Tolerate).", ex:"<strong>صح.</strong> التحمّل (القبول) يعني قبول خطر منخفض الأثر عن وعي وتحمّل تكلفته إن حدث — مثل قبول QuickBite أن ١٪ من الطلبات قد تتأخر قليلاً."}},
+  { ch:"7", val:false,
+    en:{q:"Risk Management is a static, one-time activity performed strictly during the pre-project feasibility phase.", ex:"<strong>False.</strong> Risk management is a continuous living loop, not a one-time task. The slides stress: \"Risk management is a living document\" — risks are monitored and the register is updated throughout the project."},
+    ar:{q:"إدارة المخاطر نشاط ثابت يُنفَّذ لمرة واحدة فقط خلال مرحلة دراسة الجدوى قبل المشروع.", ex:"<strong>خطأ.</strong> إدارة المخاطر حلقة مستمرة حيّة، وليست مهمة لمرة واحدة. تؤكد السلايدات: \"إدارة المخاطر وثيقة حيّة\" — تُراقَب المخاطر ويُحدَّث السجل طوال المشروع."}},
+  { ch:"8", val:true,
+    en:{q:"CMMI Level 4 (Quantitatively Managed) relies heavily on statistical and quantitative techniques to make process performance predictable.", ex:"<strong>True.</strong> Level 4 controls performance using measures and statistics — defects per module, test pass rates, schedule variance — making outcomes predictable before release."},
+    ar:{q:"يعتمد المستوى ٤ في CMMI (المُدار كمّياً) بشكل كبير على الأساليب الإحصائية والكمّية لجعل أداء العملية قابلاً للتنبؤ.", ex:"<strong>صح.</strong> يتحكم المستوى ٤ في الأداء باستخدام القياسات والإحصاء — العيوب لكل وحدة، ومعدلات نجاح الاختبار، وانحراف الجدول — مما يجعل النتائج قابلة للتنبؤ قبل الإصدار."}},
+  { ch:"8", val:false,
+    en:{q:"In the CMMI Continuous representation, process proficiency is measured via organizational maturity levels.", ex:"<strong>False.</strong> The Continuous representation measures <em>Process Area Capability</em> area-by-area. Organizational maturity levels belong to the Staged representation."},
+    ar:{q:"في التمثيل المستمر لـ CMMI، تُقاس كفاءة العملية عبر مستويات نضج المنظمة.", ex:"<strong>خطأ.</strong> التمثيل المستمر يقيس <em>قدرة منطقة العملية</em> منطقةً بمنطقة. أما مستويات نضج المنظمة فتنتمي إلى التمثيل المرحلي (Staged)."}},
+  { ch:"8", val:false,
+    en:{q:"Reaching CMMI Level 5 means an organization is perfect and no longer needs to analyze project defects.", ex:"<strong>False.</strong> Level 5 means defect prevention and improvement are continuously optimized — the organization keeps analyzing root causes (CAR) and improving. It is not \"perfect and done.\""},
+    ar:{q:"الوصول إلى المستوى ٥ في CMMI يعني أن المنظمة أصبحت مثالية ولم تعد بحاجة لتحليل عيوب المشاريع.", ex:"<strong>خطأ.</strong> المستوى ٥ يعني أن منع العيوب والتحسين يتم تحسينهما باستمرار — المنظمة تواصل تحليل الأسباب الجذرية (CAR) والتحسّن. وليس \"مثالية وانتهى الأمر\"."}},
+  { ch:"8", val:false,
+    en:{q:"Expected Cost analysis guarantees and promises the precise final cost that a software project will experience.", ex:"<strong>False.</strong> Expected Cost is a weighted statistical forecast (Σ Probability × Cost), not a guarantee. The slides note it \"does not guarantee the actual cost\" but supports a rational planning choice."},
+    ar:{q:"يضمن تحليل التكلفة المتوقعة ويَعِد بالتكلفة النهائية الدقيقة التي سيواجهها المشروع البرمجي.", ex:"<strong>خطأ.</strong> التكلفة المتوقعة تنبؤ إحصائي مرجّح (مجموع الاحتمالية × التكلفة)، وليست ضماناً. تشير السلايدات إلى أنها \"لا تضمن التكلفة الفعلية\" لكنها تدعم خياراً تخطيطياً رشيداً."}},
+  { ch:"8", val:true,
+    en:{q:"Configuration Management (CM) and Project Planning (PP) are process areas first introduced and controlled at CMMI Level 2 (Managed).", ex:"<strong>True.</strong> Both CM and PP appear at Level 2 (along with REQM, PMC, SAM, MA, PPQA). Level 2 is where each project gains planning, tracking, and version control."},
+    ar:{q:"إدارة الإعدادات (CM) وتخطيط المشروع (PP) هما منطقتا عملية تُقدَّمان ويُتحكَّم بهما لأول مرة في المستوى ٢ من CMMI (المُدار).", ex:"<strong>صح.</strong> يظهر كلٌّ من CM وPP في المستوى ٢ (إلى جانب REQM وPMC وSAM وMA وPPQA). المستوى ٢ هو حيث يكتسب كل مشروع التخطيط والتتبّع والتحكم في الإصدارات."}},
+  { ch:"7", val:false,
+    en:{q:"Risk Score is mathematically calculated by dividing the probability of a threat by its severity rating.", ex:"<strong>False.</strong> Risk Score is calculated by <em>multiplying</em>: Risk Score = Probability × Severity. In QuickBite, app crash = High × High → 9/10 (Critical)."},
+    ar:{q:"تُحسب درجة الخطر رياضياً بقسمة احتمالية التهديد على تقييم شدّته.", ex:"<strong>خطأ.</strong> تُحسب درجة الخطر بـ <em>الضرب</em>: درجة الخطر = الاحتمالية × الشدّة. في QuickBite، تعطّل التطبيق = عالية × عالية ← ٩/١٠ (حرجة)."}}
+];
+/* ════════════════════════════════════════════
+   CHAPTER 8 — detailed answers (custom HTML bodies)
+════════════════════════════════════════════ */
+const CH8 = [
+  {
+    badge:"Q2", marks:{en:"4 marks",ar:"٤ درجات"},
+    title:{en:"Create a comprehensive table of the 5 CMMI Maturity Levels — definition, key steps, advantages.",
+           ar:"أنشئ جدولاً شاملاً لمستويات نضج CMMI الخمسة — التعريف، الخطوات الرئيسية، والمزايا."},
+    body:{
+      en:`<table class="dtable"><thead><tr><th>Level</th><th>Name</th><th>Definition</th><th>Key Steps</th><th>Advantage</th></tr></thead><tbody>
+        <tr><td><span class="lvl l1">1</span></td><td class="td-k">Initial</td><td>Ad hoc and chaotic. Success depends on individual effort, not a reliable process.</td><td>No written requirements or plan. Late/ad-hoc testing. Schedules depend on "who is available today."</td><td>Starting point — awareness a process is needed.</td></tr>
+        <tr><td><span class="lvl l2">2</span></td><td class="td-k">Managed</td><td>Each project is planned, tracked, and change-controlled at the project level.</td><td>REQM, Project Planning, Monitoring & Control, Configuration Management.</td><td>Each project becomes controllable, even without an org-wide standard.</td></tr>
+        <tr><td><span class="lvl l3">3</span></td><td class="td-k">Defined</td><td>Processes documented, trained, and standardized across the whole organization.</td><td>Requirements Development, Technical Solution, Verification, Validation, Risk Management, Training.</td><td>Consistency across all projects — easier to scale and onboard.</td></tr>
+        <tr><td><span class="lvl l4">4</span></td><td class="td-k">Quantitatively Managed</td><td>Performance controlled using measures and statistics — results are predictable.</td><td>Track defects/module, effort/feature, test pass rate, schedule variance.</td><td>Data-driven decisions; cost and quality predicted accurately.</td></tr>
+        <tr><td><span class="lvl l5">5</span></td><td class="td-k">Optimizing</td><td>Uses evidence to prevent problems and innovate, not just react.</td><td>Root cause → improve process → deploy innovation → measure → repeat.</td><td>Highest quality & efficiency; improvement is part of daily work.</td></tr>
+        </tbody></table>
+        <div class="callout c-amber"><strong>Exam wording:</strong> Best maturity result = Level 5. Best practical first goal = Level 3 — Defined.</div>`,
+      ar:`<table class="dtable"><thead><tr><th>المستوى</th><th>الاسم</th><th>التعريف</th><th>الخطوات الرئيسية</th><th>الميزة</th></tr></thead><tbody>
+        <tr><td><span class="lvl l1">١</span></td><td class="td-k">الأولي</td><td>عشوائي وفوضوي. النجاح يعتمد على الجهد الفردي لا على عملية موثوقة.</td><td>لا متطلبات أو خطة مكتوبة. اختبار متأخر/عشوائي. الجداول تعتمد على "من المتاح اليوم".</td><td>نقطة انطلاق — الوعي بأن العملية ضرورية.</td></tr>
+        <tr><td><span class="lvl l2">٢</span></td><td class="td-k">المُدار</td><td>كل مشروع يُخطَّط ويُتتبَّع ويُتحكَّم بتغييراته على مستوى المشروع.</td><td>إدارة المتطلبات، تخطيط المشروع، المراقبة والتحكم، إدارة الإعدادات.</td><td>كل مشروع يصبح قابلاً للتحكم، حتى دون معيار على مستوى المنظمة.</td></tr>
+        <tr><td><span class="lvl l3">٣</span></td><td class="td-k">المُعرَّف</td><td>عمليات موثّقة ومُدرَّب عليها وموحّدة عبر المنظمة بأكملها.</td><td>تطوير المتطلبات، الحل التقني، التحقق، المصادقة، إدارة المخاطر، التدريب.</td><td>اتساق عبر كل المشاريع — أسهل للتوسّع وإدماج الفرق.</td></tr>
+        <tr><td><span class="lvl l4">٤</span></td><td class="td-k">المُدار كمّياً</td><td>يُتحكَّم في الأداء بالقياسات والإحصاء — النتائج قابلة للتنبؤ.</td><td>تتبّع العيوب/الوحدة، الجهد/الميزة، معدل نجاح الاختبار، انحراف الجدول.</td><td>قرارات مبنية على البيانات؛ التكلفة والجودة يُتنبَّأ بهما بدقة.</td></tr>
+        <tr><td><span class="lvl l5">٥</span></td><td class="td-k">التحسين</td><td>يستخدم الأدلة لمنع المشاكل والابتكار، لا مجرد رد الفعل.</td><td>السبب الجذري ← تحسين العملية ← نشر الابتكار ← القياس ← التكرار.</td><td>أعلى جودة وكفاءة؛ التحسين جزء من العمل اليومي.</td></tr>
+        </tbody></table>
+        <div class="callout c-amber"><strong>صياغة الاختبار:</strong> أفضل نتيجة نضج = المستوى ٥. أفضل هدف عملي أولي = المستوى ٣ المُعرَّف.</div>`
+    }
+  },
+  {
+    badge:"Q3", marks:{en:"5 marks",ar:"٥ درجات"},
+    title:{en:"Decision tree (Build vs Reuse System X): calculate Expected Cost and state your final decision.",
+           ar:"شجرة القرار (بناء مقابل إعادة استخدام النظام X): احسب التكلفة المتوقعة واذكر قرارك النهائي."},
+    body:{
+      en:`<div class="formula">EC = <b>Σ (Probability × Cost)</b> — the lowest expected cost is the preferred economic decision.</div>
+        <div class="calc-steps">
+          <div class="calc-step"><div class="calc-n">1</div><div class="calc-body"><div class="calc-title">Expected Cost to Build</div><div class="calc-math">(0.30 × 380,000) + (0.70 × 450,000)<br>= 114,000 + 315,000</div><div class="calc-res">= $429,000</div></div></div>
+          <div class="calc-step"><div class="calc-n">2</div><div class="calc-body"><div class="calc-title">Expected Cost to Reuse</div><div class="calc-math">Minor: 0.40 × 275,000 = 110,000<br>Major inner: (0.20 × 310,000)+(0.80 × 490,000) = 454,000<br>Major: 0.60 × 454,000 = 272,400<br>Total = 110,000 + 272,400</div><div class="calc-res">= $382,400</div></div></div>
+          <div class="calc-step"><div class="calc-n">3</div><div class="calc-body"><div class="calc-title">Compare and Choose</div>
+            <div class="dec-row"><div class="dec-card"><div class="dc-lbl">Build Path</div><div class="dc-val">$429,000</div></div><div class="dec-card win"><div class="dc-lbl">Reuse Path ✓</div><div class="dc-val g">$382,400</div><div class="dc-save">Saves $46,600</div></div></div>
+            <div class="calc-math" style="margin-top:8px;">Choose Reuse — lower expected cost. This is an expected-value decision: it does not guarantee actual cost, but supports rational planning.</div></div></div>
+        </div>`,
+      ar:`<div class="formula">EC = <b>مجموع (الاحتمالية × التكلفة)</b> — التكلفة المتوقعة الأقل هي القرار الاقتصادي المفضّل.</div>
+        <div class="calc-steps">
+          <div class="calc-step"><div class="calc-n">١</div><div class="calc-body"><div class="calc-title">التكلفة المتوقعة للبناء</div><div class="calc-math">(0.30 × 380,000) + (0.70 × 450,000)<br>= 114,000 + 315,000</div><div class="calc-res">= $429,000</div></div></div>
+          <div class="calc-step"><div class="calc-n">٢</div><div class="calc-body"><div class="calc-title">التكلفة المتوقعة لإعادة الاستخدام</div><div class="calc-math">تغييرات طفيفة: 0.40 × 275,000 = 110,000<br>الفرع الكبير الداخلي: (0.20 × 310,000)+(0.80 × 490,000) = 454,000<br>الفرع الكبير: 0.60 × 454,000 = 272,400<br>المجموع = 110,000 + 272,400</div><div class="calc-res">= $382,400</div></div></div>
+          <div class="calc-step"><div class="calc-n">٣</div><div class="calc-body"><div class="calc-title">المقارنة والاختيار</div>
+            <div class="dec-row"><div class="dec-card"><div class="dc-lbl">مسار البناء</div><div class="dc-val">$429,000</div></div><div class="dec-card win"><div class="dc-lbl">مسار إعادة الاستخدام ✓</div><div class="dc-val g">$382,400</div><div class="dc-save">يوفّر $46,600</div></div></div>
+            <div class="calc-math" style="margin-top:8px;">اختر إعادة الاستخدام — تكلفة متوقعة أقل. هذا قرار بالقيمة المتوقعة: لا يضمن التكلفة الفعلية، لكنه يدعم التخطيط الرشيد.</div></div></div>
+        </div>`
+    }
+  }
+];
+
+/* ════════════════════════════════════════════
+   CHAPTER 7 — detailed answers
+════════════════════════════════════════════ */
+const CH7 = [
+  {
+    badge:"Q4", marks:{en:"5 marks",ar:"٥ درجات"},
+    title:{en:"Detail the 5 main risk management steps + a QuickBite example for each.",
+           ar:"اشرح خطوات إدارة المخاطر الخمس الرئيسية + مثال QuickBite لكل خطوة."},
+    body:{
+      en:`<div class="hierarchy"><b>Project Management Plan</b> <span class="hier-arrow">→</span> <b>Risk Management Plan</b> <span class="hier-arrow">→</span> Process (Who, What, When, How) · Tools (PM software, Excel) · Activities (managing risk throughout the project)</div>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-n">1</div><div class="step-c"><div class="step-name">Identifying (Risk)</div><div class="step-desc">Find all potential threats before they happen. "You cannot manage what you have not identified."</div><div class="step-eg">QB: App crashes during peak hours (7–9 PM), marketing budget runs out before launch, competitor launches a 50% discount on launch day.</div></div></div>
+          <div class="step-item"><div class="step-n">2</div><div class="step-c"><div class="step-name">Determining (Probabilities — Analysis & Assessment)</div><div class="step-desc">Measure each risk: <strong>Risk Score = Probability × Severity</strong> to prioritize resources.</div><div class="step-eg">QB: App crash → High × High = 9/10 (Critical). Late deliveries → Medium × Medium = 5/10 (Moderate).</div></div></div>
+          <div class="step-item"><div class="step-n">3</div><div class="step-c"><div class="step-name">Evaluation (Impact & Prioritization)</div><div class="step-desc">Rank risks on a Risk Heat Map. "Focus your resources where the impact is greatest."</div><div class="step-eg">QB: Red Zone — app stability & payment security (fix before launch). Yellow — marketing & delivery speed. Green — office supplies (accept).</div></div></div>
+          <div class="step-item"><div class="step-n">4</div><div class="step-c"><div class="step-name">Planning (Responses — the 4 T's)</div><div class="step-desc">Choose a strategy per risk: Terminate, Treat, Transfer, or Tolerate.</div><div class="step-eg">QB: Treat the app crash risk — hire extra servers and run stress tests.</div></div></div>
+          <div class="step-item"><div class="step-n">5</div><div class="step-c"><div class="step-name">Documenting / Communicating (Monitoring & Review)</div><div class="step-desc">"Risk management is a living document." Continuously track new and evolving threats.</div><div class="step-eg">QB: After 1 month, discovered a "Driver Shortage" risk → increased driver bonuses immediately.</div></div></div>
+        </div>`,
+      ar:`<div class="hierarchy"><b>خطة إدارة المشروع</b> <span class="hier-arrow">←</span> <b>خطة إدارة المخاطر</b> <span class="hier-arrow">←</span> العملية (من، ماذا، متى، كيف) · الأدوات (برامج إدارة المشاريع، Excel) · الأنشطة (إدارة المخاطر طوال المشروع)</div>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-n">١</div><div class="step-c"><div class="step-name">التعرّف على المخاطر</div><div class="step-desc">إيجاد كل التهديدات المحتملة قبل وقوعها. "لا يمكنك إدارة ما لم تتعرّف عليه."</div><div class="step-eg">QB: تعطّل التطبيق وقت الذروة (٧–٩ مساءً)، نفاد ميزانية التسويق قبل الإطلاق، منافس يطلق خصم ٥٠٪ يوم الإطلاق.</div></div></div>
+          <div class="step-item"><div class="step-n">٢</div><div class="step-c"><div class="step-name">تحديد الاحتمالية (التحليل والتقييم)</div><div class="step-desc">قياس كل خطر: <strong>درجة الخطر = الاحتمالية × الشدّة</strong> لترتيب أولوية الموارد.</div><div class="step-eg">QB: تعطّل التطبيق ← عالية × عالية = ٩/١٠ (حرجة). تأخّر التوصيل ← متوسطة × متوسطة = ٥/١٠ (متوسطة).</div></div></div>
+          <div class="step-item"><div class="step-n">٣</div><div class="step-c"><div class="step-name">التقييم (الأثر وترتيب الأولوية)</div><div class="step-desc">ترتيب المخاطر على خريطة حرارية للمخاطر. "ركّز مواردك حيث يكون الأثر الأكبر."</div><div class="step-eg">QB: المنطقة الحمراء — استقرار التطبيق وأمان الدفع (يُحل قبل الإطلاق). الصفراء — التسويق وسرعة التوصيل. الخضراء — مستلزمات المكتب (تُقبل).</div></div></div>
+          <div class="step-item"><div class="step-n">٤</div><div class="step-c"><div class="step-name">تخطيط الاستجابة (الـ4 T's)</div><div class="step-desc">اختيار استراتيجية لكل خطر: الإنهاء، المعالجة، التحويل، أو التحمّل.</div><div class="step-eg">QB: معالجة خطر تعطّل التطبيق — استئجار خوادم إضافية وإجراء اختبارات إجهاد.</div></div></div>
+          <div class="step-item"><div class="step-n">٥</div><div class="step-c"><div class="step-name">التوثيق / التواصل (المراقبة والمراجعة)</div><div class="step-desc">"إدارة المخاطر وثيقة حيّة." تتبّع التهديدات الجديدة والمتغيّرة باستمرار.</div><div class="step-eg">QB: بعد شهر، اكتُشف خطر "نقص السائقين" ← رُفعت مكافآت السائقين فوراً.</div></div></div>
+        </div>`
+    }
+  },
+  {
+    badge:"Q5", marks:{en:"3 marks",ar:"٣ درجات"},
+    title:{en:"The 4 risk response strategies (Terminate, Treat, Transfer, Tolerate) — purpose of each.",
+           ar:"استراتيجيات الاستجابة الأربع (الإنهاء، المعالجة، التحويل، التحمّل) — الغرض من كلٍّ منها."},
+    body:{
+      en:`<div class="ts-grid">
+        <div class="t-card"><div class="t-name"><span class="t-icon">🚫</span>Terminate (Avoidance)</div><div class="t-desc">Stop the activity entirely to eliminate the risk. Used when the risk is too high to manage.</div><div class="t-eg">QB: Not delivering in high-crime areas to protect driver safety.</div></div>
+        <div class="t-card"><div class="t-name"><span class="t-icon">🔧</span>Treat (Reduction)</div><div class="t-desc">Take action to lower the probability or impact to an acceptable level.</div><div class="t-eg">QB: Hire extra servers and run stress tests to prevent crashes.</div></div>
+        <div class="t-card"><div class="t-name"><span class="t-icon">↗</span>Transfer (Sharing)</div><div class="t-desc">Shift the financial/operational burden of the risk to a third party.</div><div class="t-eg">QB: Buy insurance for delivery riders to shift liability.</div></div>
+        <div class="t-card"><div class="t-name"><span class="t-icon">✓</span>Tolerate (Acceptance)</div><div class="t-desc">Acknowledge the risk and bear the cost if it occurs. For low-impact risks.</div><div class="t-eg">QB: Accept that 1% of orders may be slightly late due to traffic.</div></div>
+        </div>`,
+      ar:`<div class="ts-grid">
+        <div class="t-card"><div class="t-name"><span class="t-icon">🚫</span>الإنهاء (التجنّب)</div><div class="t-desc">إيقاف النشاط كلياً لإزالة الخطر. يُستخدم حين يكون الخطر أعلى من أن يُدار.</div><div class="t-eg">QB: عدم التوصيل في المناطق عالية الجريمة لحماية السائقين.</div></div>
+        <div class="t-card"><div class="t-name"><span class="t-icon">🔧</span>المعالجة (التقليل)</div><div class="t-desc">اتخاذ إجراء لخفض الاحتمالية أو الأثر إلى مستوى مقبول.</div><div class="t-eg">QB: استئجار خوادم إضافية وإجراء اختبارات إجهاد لمنع التعطّل.</div></div>
+        <div class="t-card"><div class="t-name"><span class="t-icon">↗</span>التحويل (المشاركة)</div><div class="t-desc">نقل العبء المالي/التشغيلي للخطر إلى طرف ثالث.</div><div class="t-eg">QB: شراء تأمين للسائقين لنقل المسؤولية.</div></div>
+        <div class="t-card"><div class="t-name"><span class="t-icon">✓</span>التحمّل (القبول)</div><div class="t-desc">الإقرار بالخطر وتحمّل تكلفته إن وقع. للمخاطر منخفضة الأثر.</div><div class="t-eg">QB: قبول أن ١٪ من الطلبات قد تتأخر قليلاً بسبب الازدحام.</div></div>
+        </div>`
+    }
+  },
+  {
+    badge:"Q6", marks:{en:"3 marks",ar:"٣ درجات"},
+    title:{en:"Differentiate the project risk types — Operational, Financial, Compliance, Reputational, Cyber.",
+           ar:"ميّز بين أنواع مخاطر المشروع — التشغيلية، المالية، الامتثال، السمعة، السيبرانية."},
+    body:{
+      en:`<div class="risk-grid">
+        <div class="risk-row"><span class="risk-tag l2">Operational</span><div><div class="risk-def">Failed logistics, GPS errors, or partner delays.</div><div class="risk-ex">QB: A GPS glitch sends drivers to wrong locations, causing massive delays.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l1">Financial</span><div><div class="risk-def">Budget overruns and lower-than-expected sales.</div><div class="risk-ex">QB: Running out of marketing budget before launch, preventing user acquisition.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l3">Compliance</span><div><div class="risk-def">New labor laws for gig workers or food-safety regulations.</div><div class="risk-ex">QB: A law requires all riders to be classified as full-time employees.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l5">Reputational</span><div><div class="risk-def">Negative publicity from cold food, rude drivers, or scandals.</div><div class="risk-ex">QB: A viral video of a driver eating a customer's fries ruins trust.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l4">Cyber</span><div><div class="risk-def">Data breaches, hacking, or IT system failures.</div><div class="risk-ex">QB: Hackers steal 10,000 customer credit card records.</div></div></div>
+        </div>`,
+      ar:`<div class="risk-grid">
+        <div class="risk-row"><span class="risk-tag l2">تشغيلية</span><div><div class="risk-def">فشل اللوجستيات، أخطاء GPS، أو تأخّر الشركاء.</div><div class="risk-ex">QB: خلل في GPS يرسل السائقين لمواقع خاطئة، مسبّباً تأخيرات ضخمة.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l1">مالية</span><div><div class="risk-def">تجاوز الميزانية ومبيعات أقل من المتوقع.</div><div class="risk-ex">QB: نفاد ميزانية التسويق قبل الإطلاق، ما يمنع اكتساب المستخدمين.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l3">امتثال</span><div><div class="risk-def">قوانين عمل جديدة لعمّال الاقتصاد الحر أو لوائح سلامة غذائية.</div><div class="risk-ex">QB: قانون يُلزم بتصنيف كل السائقين موظفين بدوام كامل.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l5">سمعة</span><div><div class="risk-def">دعاية سلبية من طعام بارد أو سائقين فظّين أو فضائح.</div><div class="risk-ex">QB: فيديو فيروسي لسائق يأكل من طلب الزبون يدمّر الثقة.</div></div></div>
+        <div class="risk-row"><span class="risk-tag l4">سيبرانية</span><div><div class="risk-def">اختراق البيانات، القرصنة، أو فشل أنظمة تقنية المعلومات.</div><div class="risk-ex">QB: قراصنة يسرقون ١٠,٠٠٠ سجل بطاقة ائتمان للعملاء.</div></div></div>
+        </div>`
+    }
+  },
+  {
+    badge:"Q7", marks:{en:"4 marks",ar:"٤ درجات"},
+    title:{en:"Explain Expected Monetary Value (EMV) — formula + structured table.",
+           ar:"اشرح القيمة النقدية المتوقعة (EMV) — المعادلة + جدول منظّم."},
+    body:{
+      en:`<div class="formula">EMV = <b>Probability × Impact</b> &nbsp;|&nbsp; Total Project EMV = <b>Σ all EMVs</b></div>
+        <p class="ans-explain" style="margin-bottom:10px;">Negative impact = threat (loss); positive impact = opportunity (gain). The total shows the risk reserve needed.</p>
+        <table class="dtable" style="border-radius:10px 10px 0 0;overflow:hidden;"><thead><tr><th>Risk</th><th>Probability</th><th>Impact ($)</th><th>EMV ($)</th></tr></thead><tbody>
+        <tr><td>App crash</td><td class="td-mono" style="color:var(--muted)">30% (0.30)</td><td class="td-mono" style="color:var(--rose)">−200,000</td><td class="td-mono" style="color:var(--rose)">−60,000</td></tr>
+        <tr><td>Late deliveries</td><td class="td-mono" style="color:var(--muted)">40% (0.40)</td><td class="td-mono" style="color:var(--rose)">−50,000</td><td class="td-mono" style="color:var(--rose)">−20,000</td></tr>
+        <tr><td>Marketing success</td><td class="td-mono" style="color:var(--muted)">25% (0.25)</td><td class="td-mono" style="color:var(--emerald)">+120,000</td><td class="td-mono" style="color:var(--emerald)">+30,000</td></tr>
+        </tbody></table>
+        <div class="emv-total"><span style="color:var(--muted)">Total Project EMV</span><span style="color:var(--rose);font-weight:600">−$50,000</span></div>
+        <div class="callout c-violet"><strong>Interpretation:</strong> QuickBite needs a risk reserve of at least $50,000. The negative total means threats outweigh identified opportunities.</div>`,
+      ar:`<div class="formula">EMV = <b>الاحتمالية × الأثر</b> &nbsp;|&nbsp; إجمالي EMV للمشروع = <b>مجموع كل القيم</b></div>
+        <p class="ans-explain" style="margin-bottom:10px;">الأثر السالب = تهديد (خسارة)؛ الأثر الموجب = فرصة (مكسب). الإجمالي يبيّن احتياطي المخاطر المطلوب.</p>
+        <table class="dtable" style="border-radius:10px 10px 0 0;overflow:hidden;"><thead><tr><th>الخطر</th><th>الاحتمالية</th><th>الأثر ($)</th><th>EMV ($)</th></tr></thead><tbody>
+        <tr><td>تعطّل التطبيق</td><td class="td-mono" style="color:var(--muted)">30% (0.30)</td><td class="td-mono" style="color:var(--rose)">−200,000</td><td class="td-mono" style="color:var(--rose)">−60,000</td></tr>
+        <tr><td>تأخّر التوصيل</td><td class="td-mono" style="color:var(--muted)">40% (0.40)</td><td class="td-mono" style="color:var(--rose)">−50,000</td><td class="td-mono" style="color:var(--rose)">−20,000</td></tr>
+        <tr><td>نجاح التسويق</td><td class="td-mono" style="color:var(--muted)">25% (0.25)</td><td class="td-mono" style="color:var(--emerald)">+120,000</td><td class="td-mono" style="color:var(--emerald)">+30,000</td></tr>
+        </tbody></table>
+        <div class="emv-total"><span style="color:var(--muted)">إجمالي EMV للمشروع</span><span style="color:var(--rose);font-weight:600">−$50,000</span></div>
+        <div class="callout c-violet"><strong>التفسير:</strong> يحتاج QuickBite احتياطي مخاطر لا يقل عن ٥٠,٠٠٠$. الإجمالي السالب يعني أن التهديدات تفوق الفرص المحدّدة.</div>`
+    }
+  }
+];
+
+/* ════════════════════════════════════════════
+   CHEAT SHEET
+════════════════════════════════════════════ */
+const CHEAT = [
+  {
+    cls:"d-em", ic:"di-em", icon:"🌳",
+    title:{en:"Decision Tree — Mandatory Rule", ar:"شجرة القرارات — القاعدة الإلزامية"},
+    sub:{en:"Chapter 8 · Expected Cost", ar:"الفصل ٨ · التكلفة المتوقعة"},
+    render(L){
+      const t = {
+        en:{ alert:"Professor's Explicit Grading Rule", b1:"You MUST write the complete formula on the exam paper.",
+             b2:"Formula + numerical error", b2b:"→ partial credit",
+             b3:"No formula + numerical error", b3b:"→ strict ZERO" },
+        ar:{ alert:"قاعدة تصحيح الدكتور الصريحة", b1:"يجب أن تكتب المعادلة كاملة في ورقة الاختبار.",
+             b2:"المعادلة + خطأ حسابي", b2b:"← درجة جزئية",
+             b3:"بدون معادلة + خطأ حسابي", b3b:"← صفر صارم" }
+      }[L];
+      return `<div class="dash-formula df-em">EC = <b>Σ (Probability × Cost)</b></div>
+        <div class="dash-alert alert-rose">
+          <span class="alert-ic">⚠️</span>
+          <div class="alert-body">
+            <span class="alert-tag">${t.alert}</span>
+            <div class="alert-txt"><strong>${t.b1}</strong><br>
+            • ${t.b2} <span class="partial-pop">${t.b2b}</span><br>
+            • ${t.b3} <span class="zero-pop">${t.b3b}</span></div>
+          </div>
+        </div>`;
+    }
+  },
+  {
+    cls:"d-vi", ic:"di-vi", icon:"⏱️",
+    title:{en:"5 Risk Activities Timeline", ar:"خطوات أنشطة إدارة المخاطر الـ٥"},
+    sub:{en:"Chapter 7 · Slide 4 · exact terms", ar:"الفصل ٧ · شريحة ٤ · المصطلحات الحرفية"},
+    render(L){
+      const steps = [
+        {en:"Identifying", ar:"التعرّف", e:"Identifying"},
+        {en:"Determining", ar:"التحديد", e:"Determining"},
+        {en:"Evaluation", ar:"التقييم", e:"Evaluation"},
+        {en:"Planning", ar:"التخطيط", e:"Planning"},
+        {en:"Documenting / Communicating", ar:"التوثيق / التواصل", e:"Documenting/Communicating"}
+      ];
+      let flow = `<div class="flow">`;
+      steps.forEach((s,i)=>{
+        const showEn = (L==="ar") ? `<span class="flow-en">${s.e}</span>` : "";
+        flow += `<div class="flow-step"><div class="flow-n">${L==="ar"?["١","٢","٣","٤","٥"][i]:i+1}</div><div class="flow-label">${s[L]}${showEn}</div></div>`;
+      });
+      flow += `</div>`;
+      const hier = (L==="ar")
+        ? `<div class="hier-box"><b>خطة إدارة المشروع</b> <span class="hier-sep">←</span> <b>خطة إدارة المخاطر</b> <span class="hier-sep">←</span> (العملية · الأدوات · الأنشطة)</div>`
+        : `<div class="hier-box"><b>Project Management Plan</b> <span class="hier-sep">→</span> <b>Risk Management Plan</b> <span class="hier-sep">→</span> (Process · Tools · Activities)</div>`;
+      return flow + hier;
+    }
+  },
+  {
+    cls:"d-in", ic:"di-in", icon:"📋",
+    title:{en:"CMMI Table — Grading Standard", ar:"معيار تصحيح جدول CMMI"},
+    sub:{en:"Chapter 8 · long-answer format", ar:"الفصل ٨ · صيغة الإجابة الطويلة"},
+    render(L){
+      const t = {
+        en:{ chips:["Level","Definition","Key Steps","Benefit & Explanation"],
+             exLbl:"Exact class example — Level 1",
+             ex:"Benefit = <b>Better Quality</b> · Explanation = <b>Fewer software defects detected</b>",
+             d2l:"Level 2", d2:"Project-level control — Planning, REQM, CM",
+             d3l:"Level 3", d3:"Organization-wide standardized processes" },
+        ar:{ chips:["المستوى","التعريف","الخطوات الرئيسية","الفائدة والشرح"],
+             exLbl:"المثال الحرفي في المحاضرة — المستوى ١",
+             ex:"الفائدة = <b>جودة أفضل</b> · الشرح = <b>عدد أقل من العيوب البرمجية المكتشفة</b>",
+             d2l:"المستوى ٢", d2:"تحكم على مستوى المشروع — التخطيط، REQM، CM",
+             d3l:"المستوى ٣", d3:"عمليات موحّدة على مستوى المنظمة" }
+      }[L];
+      const chips = t.chips.map((c,i)=>`<span class="comp-chip${i===3?' star':''}">${i===3?'★ ':''}${c}</span>`).join("");
+      return `<div class="comp-row">${chips}</div>
+        <div class="ex-box"><div class="ex-lbl">${t.exLbl}</div><div>${t.ex}</div></div>
+        <div class="diff-row">
+          <div class="diff-card diff-2"><div class="diff-lvl">${t.d2l}</div><div class="diff-txt">${t.d2}</div></div>
+          <div class="diff-card diff-3"><div class="diff-lvl">${t.d3l}</div><div class="diff-txt">${t.d3}</div></div>
+        </div>`;
+    }
+  },
+  {
+    cls:"d-am", ic:"di-am", icon:"🎯",
+    title:{en:"4 T's Purpose & EMV Hub", ar:"استراتيجيات الـ4T والقيمة المتوقعة"},
+    sub:{en:"Chapter 7 · response + EMV", ar:"الفصل ٧ · الاستجابة وEMV"},
+    render(L){
+      const ts = {
+        en:[ {n:"🚫 Terminate", p:"Eliminate the risk entirely"},
+             {n:"🔧 Treat", p:"Reduce probability or impact"},
+             {n:"↗ Transfer", p:"Shift the financial / operational risk burden", hl:true},
+             {n:"✓ Tolerate", p:"Accept low-impact risk"} ],
+        ar:[ {n:"🚫 الإنهاء", p:"إزالة الخطر كلياً"},
+             {n:"🔧 المعالجة", p:"تقليل الاحتمالية أو الأثر"},
+             {n:"↗ التحويل", p:"نقل العبء المالي / التشغيلي للخطر", hl:true},
+             {n:"✓ التحمّل", p:"قبول الخطر منخفض الأثر"} ]
+      }[L];
+      let grid = `<div class="tmini">`;
+      ts.forEach(x=>{ grid += `<div class="tmini-card${x.hl?' hl':''}"><div class="tmini-name">${x.n}</div><div class="tmini-purpose">${x.p}</div></div>`; });
+      grid += `</div>`;
+      const emv = (L==="ar")
+        ? `<div class="dash-formula df-vi">EMV = <b>الاحتمالية × الأثر</b></div>
+           <div class="dash-alert alert-rose"><span class="alert-ic">📉</span><div class="alert-body"><div class="alert-txt"><strong>إجمالي EMV سالب</strong> يعني تعرّضاً للتهديد يستلزم <strong>احتياطي مخاطر محسوباً</strong>.</div></div></div>`
+        : `<div class="dash-formula df-vi">EMV = <b>Probability × Impact</b></div>
+           <div class="dash-alert alert-rose"><span class="alert-ic">📉</span><div class="alert-body"><div class="alert-txt">A <strong>negative total EMV</strong> dictates threat exposure that requires a <strong>calculated risk reserve</strong>.</div></div></div>`;
+      return grid + emv;
+    }
+  }
+];
+/* ════════════════════════════════════════════
+   STATE + RENDER ENGINE
+════════════════════════════════════════════ */
+let LANG = "en";
+
+function qCard(badge, badgeCls, title, bodyHTML, openByDefault) {
+  return `<div class="q-card${openByDefault?' open':''}">
+    <div class="q-trigger" onclick="togCard(this)">
+      <span class="q-badge ${badgeCls}">${badge}</span>
+      <span class="q-title">${title}</span>
+      <span class="q-arrow">⌄</span>
+    </div>
+    <div class="q-body"><div class="q-body-inner">${bodyHTML}</div></div>
+  </div>`;
 }
-document.querySelector('.q-trigger').click();
+
+function renderMCQ() {
+  const t = UI[LANG];
+  let html = "";
+  MCQ.forEach((item, i) => {
+    const d = item[LANG];
+    const body = `<div class="ans-pill"><span class="ans-pill-label">${t.correct_ans}:</span> ${d.a}</div>
+      <p class="ans-explain"><strong>${t.explanation}:</strong> ${d.ex}</p>`;
+    html += qCard(`MCQ ${i+1}`, "qb-mcq", d.q, body, false);
+  });
+  document.getElementById("mcqList").innerHTML = html;
+}
+
+function renderTF() {
+  const t = UI[LANG];
+  let html = "";
+  TF.forEach((item, i) => {
+    const d = item[LANG];
+    const verdict = item.val ? t.tf_true : t.tf_false;
+    const pillCls = item.val ? "ans-pill" : "ans-pill false-pill";
+    const body = `<div class="${pillCls}"><span class="ans-pill-label">${t.answer}:</span> ${verdict}</div>
+      <p class="ans-explain">${d.ex}</p>`;
+    html += qCard(`T/F ${i+16}`, "qb-tf", d.q, body, false);
+  });
+  document.getElementById("tfList").innerHTML = html;
+}
+
+function renderCh(list, mountId, badgeCls) {
+  let html = "";
+  list.forEach((item, idx) => {
+    const title = item.title[LANG];
+    const body = item.body[LANG];
+    const badge = item.badge;
+    html += qCard(badge, badgeCls, title, body, idx===0);
+  });
+  document.getElementById(mountId).innerHTML = html;
+}
+
+function renderCheat() {
+  let html = `<div class="dash-grid">`;
+  CHEAT.forEach(card => {
+    html += `<div class="dash-card ${card.cls}">
+      <div class="dash-head">
+        <div class="dash-ic ${card.ic}">${card.icon}</div>
+        <div class="dash-titles">
+          <div class="dash-t">${card.title[LANG]}</div>
+          <div class="dash-sub">${card.sub[LANG]}</div>
+        </div>
+      </div>
+      ${card.render(LANG)}
+    </div>`;
+  });
+  html += `</div>`;
+  document.getElementById("cheatList").innerHTML = html;
+}
+
+function applyUIStrings() {
+  const t = UI[LANG];
+  document.querySelectorAll("[data-i]").forEach(el => {
+    const key = el.getAttribute("data-i");
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+}
+
+function renderAll() {
+  applyUIStrings();
+  renderMCQ();
+  renderTF();
+  renderCh(CH8, "ch8List", "qb-8");
+  renderCh(CH7, "ch7List", "qb-7");
+  renderCheat();
+}
+
+function togCard(trigger) {
+  trigger.closest(".q-card").classList.toggle("open");
+}
+
+function toggleLang() {
+  LANG = (LANG === "en") ? "ar" : "en";
+  const isAr = LANG === "ar";
+  document.documentElement.lang = isAr ? "ar" : "en";
+  document.body.dir = isAr ? "rtl" : "ltr";
+
+  const slider = document.getElementById("langSlider");
+  slider.className = "lang-slider " + LANG;
+  document.getElementById("optEn").classList.toggle("active", !isAr);
+  document.getElementById("optAr").classList.toggle("active", isAr);
+
+  renderAll();
+}
+
+/* init */
+renderAll();
 </script>
 </body>
 </html>
